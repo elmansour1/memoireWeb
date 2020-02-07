@@ -27,8 +27,7 @@ auteur: Auteur = new Auteur() ;
         startingTop: '10%', // Starting top style attribute
         endingTop: '10%', // Ending top style attribute
         complete:function(){ },
-        onCloseEnd:function(){
-          close()}
+        onCloseEnd:function(){window.history.go(-1)}
     });
     $(".modal").modal('open');
   }
@@ -38,8 +37,18 @@ auteur: Auteur = new Auteur() ;
   }
 
   closeAll(){
+    $('.modal').modal({
+      dismissible: true, // Modal can be dismissed by clicking outside of the modal
+      opacity: .7, // Opacity of modal background
+      inDuration: 300, // Transition in duration
+      outDuration: 200, // Transition out duration
+      startingTop: '10%', // Starting top style attribute
+      endingTop: '10%', // Ending top style attribute
+      complete:function(){ },
+      onCloseEnd:function(){window.history.go(-1)}
+  });
     $(".modal").modal('close');
-    this.router.navigate(['auteurs']);
+    this.router.navigateByUrl("auteurs");
   }
 
   onSaveAuteur(){

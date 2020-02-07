@@ -30,8 +30,9 @@ export class AuteurUpdateComponent implements OnInit {
         endingTop: '10%', // Ending top style attribute
         complete: function () { 
           // $('.datepicker').datepicker();
-        }
-    });
+        },
+        onCloseEnd:function(){window.history.go(-1)}
+          });
     this.route.params.subscribe(params =>{
       this.id = params['id'];
     });
@@ -46,6 +47,16 @@ export class AuteurUpdateComponent implements OnInit {
   }
 
   closeAll(){
+    $('.modal').modal({
+    dismissible: true, // Modal can be dismissed by clicking outside of the modal
+    opacity: .7, // Opacity of modal background
+    inDuration: 300, // Transition in duration
+    outDuration: 200, // Transition out duration
+    startingTop: '10%', // Starting top style attribute
+    endingTop: '10%', // Ending top style attribute
+    complete:function(){ },
+    onCloseEnd:function(){window.history.go(-1)}
+});
     $(".modal").modal('close');
     this.router.navigate(['auteurs']);
   }

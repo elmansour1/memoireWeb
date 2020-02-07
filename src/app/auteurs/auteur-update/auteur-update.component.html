@@ -1,47 +1,49 @@
 <div class="modal">
-    <div class="modal-content">
-      <h4>Modifier Un Auteur</h4>
-    </div>
-    <div class="row">
-    	<div class="modal-body">
-    	<div class="row input-field hide">
-		    <label>ID</label>
-		    <input type="text"  [(ngModel)]="auteur.id">
-		</div>
-		<div class="row">
-			
-			<div class="input-field col s6">Matricule:
-				<input type="text"  [(ngModel)]="auteur.matricule">
-				<!-- <label>Matricule</label> -->
-			</div>
-			<div class="input-field col s6">Nom-Prenom:
-				<input type="text"  [(ngModel)]="auteur.nom">
-				<!-- <label>Nom-Prenom</label> -->
-			</div>
-		</div>
-		<div class="row">
-			
-			<div class="input-field col s6">Email:
-				<input type="email"  [(ngModel)]="auteur.email">
-				<!-- <label>Email</label> -->
-			</div>
-			<div class="input-field col s6">Telephone:
-				<input type="text"  [(ngModel)]="auteur.telephone">
-				<!-- <label>Telephone</label> -->
-			</div>
-		</div>
-    </div>
-
-    <div class="modal-footer">
-    	<div class="row">
-	      <div class="col l6 m6 s12 center">
-				<button (click)='closeAll()' class="btn red">Annuler</button>
-			</div>
-			<div class="col l6 m6 s12 center">
-				<button (click)="onSaveAuteur()" class="btn">Envoyer</button>
-			</div>
-    	</div>
+    <div class="container">
+		<div class="modal-content center">
+			<h4>Modifier un auteur</h4>
+		  </div>
+		  <div class="row">
+			  <div class="modal-body">
+			  <div class="row input-field hide">
+				  <label>ID</label>
+				  <input type="text"  [(ngModel)]="auteur.id">
+			  </div>
+			  <div class="row">
+				  
+				  <div class="input-field col s6">Matricule:
+					  <input type="text"  [(ngModel)]="auteur.matricule">
+					  <!-- <label>Matricule</label> -->
+				  </div>
+				  <div class="input-field col s6">Nom-Prenom:
+					  <input type="text"  [(ngModel)]="auteur.nom">
+					  <!-- <label>Nom-Prenom</label> -->
+				  </div>
+			  </div>
+			  <div class="row">
+				  
+				  <div class="input-field col s6">Email:
+					  <input type="email"  [(ngModel)]="auteur.email">
+					  <!-- <label>Email</label> -->
+				  </div>
+				  <div class="input-field col s6">Telephone:
+					  <input type="text"  [(ngModel)]="auteur.telephone">
+					  <!-- <label>Telephone</label> -->
+				  </div>
+			  </div>
+		  </div>
+	  
+		  <div class="modal-footer">
+			  <div class="row">
+				<div class="col l6 m6 s12 center">
+					  <button (click)='closeAll()' class="btn red"><i class="material-icons right">cancel</i>Annuler</button>
+				  </div>
+				  <div class="col l6 m6 s12 center">
+					  <button (click)="onSaveAuteur()" class="btn "><i class="material-icons right">send</i>Envoyer</button>
+				  </div>
+			  </div>
+		  </div>
+		  </div>
+		  
 	</div>
-    </div>
-    
   </div>

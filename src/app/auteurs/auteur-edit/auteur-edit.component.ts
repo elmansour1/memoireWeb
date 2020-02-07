@@ -29,7 +29,10 @@ export class AuteurEditComponent implements OnInit {
         outDuration: 200, // Transition out duration
         startingTop: '10%', // Starting top style attribute
         endingTop: '10%', // Ending top style attribute
-        complete: function () { }
+        complete: function () { },
+        onCloseEnd:function (){
+          //window.history.go(-1);
+        }
     });
     this.route.params.subscribe(params =>{
       this.id = params['id'];
@@ -44,6 +47,7 @@ export class AuteurEditComponent implements OnInit {
   }
 
   closeAll(){
+    
     $(".modal").modal('close');
     this.router.navigate(['/auteurs']);
   }

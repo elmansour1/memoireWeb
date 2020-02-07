@@ -1,32 +1,37 @@
 <div class="modal">
-    <div class="modal-content">
-      <h4>Ajouter Un Auteur</h4>
+    <div class="modal-content container">
+      <h4 class="center">Ajouter un auteur</h4>
     </div>
-    <div class="modal-body">
+    <div class="modal-body container">
     	<div class="row input-field">
+			<i class="material-icons prefix">plus_one</i>
+			
+			<input type="text"  [(ngModel)]="auteur.matricule" class="validate">
 			<label>Matricule</label>
-			<input type="text"  [(ngModel)]="auteur.matricule">
 		</div>
 		<div class="row input-field">
+			<i class="material-icons prefix">account_circle</i>
+			<input type="text"  [(ngModel)]="auteur.nom" class="validate">
 			<label>Nom-Prenom</label>
-			<input type="text"  [(ngModel)]="auteur.nom">
 		</div>
 		<div class="row input-field">
+			<i class="material-icons prefix">mail</i>
+			<input type="email"  [(ngModel)]="auteur.email" class="validate">
 			<label>Email</label>
-			<input type="email"  [(ngModel)]="auteur.email">
 		</div>
 		<div class="row input-field">
+			<i class="material-icons prefix">call</i>
+			<input type="text"  [(ngModel)]="auteur.telephone" class="validate">
 			<label>Telephone</label>
-			<input type="text"  [(ngModel)]="auteur.telephone">
 		</div>
     </div>
     <div class="modal-footer">
     	<div class="row">
 	      <div class="col l6 m6 s12 center">
-				<button (click)='closeAll()' class="btn red">Annuler</button>
+				<button (click)='closeAll()' class="btn red">Annuler <i class="material-icons right">cancel</i></button>
 			</div>
 			<div class="col l6 m6 s12 center">
-				<button (click)="onSaveAuteur()" class="btn">Envoyer</button>
+				<button (click)="onSaveAuteur()" class="btn">Envoyer <i class="material-icons right">send</i></button>
 			</div>
     	</div>
 	</div>

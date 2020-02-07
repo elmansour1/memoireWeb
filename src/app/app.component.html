@@ -1,10 +1,10 @@
 
-<nav class="light-blue lighten-1" role="navigation">
+<nav class="orange accent-3" role="navigation">
     <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo">ENSPM</a>
 	<!-- <img class="col l2 s12" src="assets/images/logo2.png" alt="logo"> -->
       <ul class="right hide-on-med-and-down">
         <li><a href="#">Memoires</a></li>
-        <li><a [routerLink]="['/auteurs']">Etudiants</a></li>
+        <li><a [routerLink]="['/auteurs']">Auteurs</a></li>
         <li><a [routerLink]="['/enseignants']">Encadreurs</a></li>
         <li><a [routerLink]="['/parcours']">Parcours</a></li>
         <li><a [routerLink]="['/departements']">Departements</a></li>
@@ -48,46 +48,29 @@
 	<router-outlet></router-outlet>
 </div>
 <div class="row">
-	<footer class="page-footer orange">
+	<footer class="page-footer blue-grey darken-3">
     <div class="container">
-      <div class="row">
+      <div class="row left">
         <div class="col l3 s12">
           <h5 class="white-text">ENSPM</h5>
           <p class="grey-text text-lighten-4">
           	L'Ecole Nationale Supérieure Polytechnique de Maroua est un établissement de l’Université de Maroua qui forme des Ingénieurs dans plusieurs domaines
           </p>
         </div>
-         <div class="col l3 s12">
-          <h5 class="white-text">Lien rapide</h5>
-          <ul>
-            <li><a class="white-text" href="#!">Link 1</a></li>
-            <li><a class="white-text" href="#!">Link 2</a></li>
-            <li><a class="white-text" href="#!">Link 3</a></li>
-            <li><a class="white-text" href="#!">Link 4</a></li>
-          </ul>
-        </div>
-        <div class="col l3 s12">
-          <h5 class="white-text">Lien rapide</h5>
-          <ul>
-            <li><a class="white-text" href="#!">Link 1</a></li>
-            <li><a class="white-text" href="#!">Link 2</a></li>
-            <li><a class="white-text" href="#!">Link 3</a></li>
-            <li><a class="white-text" href="#!">Link 4</a></li>
-          </ul>
-        </div>
-        <div class="col l3 s12">
+         
+        <div class="col l3 s12 right">
           <h5 class="white-text">Contactez nous</h5>
           <ul>
-            <li><a class="white-text">Maroua Pitoare</a></li>
-            <li><a class="white-text">+237 699 99 99 99</a></li>
-            <li><a class="white-text">info@enspm.univ-maroua.cm</a></li>
-            <li><a class="white-text">www.enspm.univ-maroua.cm</a></li>
+            <li><a class="white-text"><i class=" tiny material-icons left">place</i>Maroua Pitoare</a></li>
+            <li><a class="white-text"><i class=" tiny material-icons left">call</i>(+237) 699 99 99 99</a></li>
+            <li><a class="white-text"><i class=" tiny material-icons left">mail</i>info@enspm.univ-maroua.cm</a></li>
+            <li><a class="white-text"><i class=" tiny material-icons left">language</i><a href="">www.enspm.univ-maroua.cm</a> </a></li>
           </ul>
         </div>
       </div>
     </div>
-    <div class="light-blue">
-      <div class="container">
+    <div class="blue-grey darken-3">
+      <div class="container center">
       Copyright ©  <a class="white-text text-lighten-3" href="#"> ENSPM->INFOTEL->Gelo -2019/2020</a>
       </div>
     </div>

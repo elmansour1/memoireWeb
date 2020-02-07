@@ -1,0 +1,35 @@
+<div class="row modal">
+	<div class="row right">
+		<div class="col l6 m6 s12 ">
+			<button (click)='closeAll()' class="btn #ffeb3b blue"><i class="material-icons">close</i></button>
+		</div>
+	</div>
+	<div class="row">
+		<h5>Détails {{auteur.nom}}</h5>
+	</div>
+	<div class="row">
+		<div class="col l6 m6 s12">
+			<b>Matricule : </b> {{auteur.matricule}}
+		</div>
+		<div class="col l6 m6 s12">
+			<b>Nom : </b> {{auteur.nom}}
+		</div>
+	</div>
+	<div class="row">
+		<div class="col l6 m6 s12">
+			<b>Email : </b> {{auteur.email}}
+		</div>
+		<div class="col l6 m6 s12">
+			<b>Telephone : </b> {{auteur.telephone}}
+		</div>
+	</div>	
+	<div class="row">
+	<div class="col l6 m6 s12 center">
+		<button (click)="onEdit()" class="btn"><i class="material-icons">edit</i>Modifier</button>
+	</div>
+	<div class="col l6 m6 s12 center">
+		<button (click)="onDeleteAuteur()" class="btn red"><i class="material-icons">delete</i>Supprimer</button>
+	</div>
+	</div>
+</div>
+

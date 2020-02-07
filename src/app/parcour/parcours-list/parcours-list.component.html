@@ -1,0 +1,24 @@
+<div id="borderless-table">
+	<div class="row">
+		<div class="col l4 s12">
+			<h4 class="header">Liste des Parcours</h4>
+		</div>
+		<button [routerLink]="['add']" data-target="modal1" class="col offset-s8-s8 btn-floating btn-large waves-effect waves-light green btn modal-trigger" ><i class="material-icons">add</i></button>
+	</div>
+	<div class="row">
+		<div class="col s12">
+			<table>
+				<thead>
+				  <tr>
+				      <th>Nom</th>
+				  </tr>
+				</thead>
+				<tbody>
+				  <tr *ngFor="let parcour of parcours" (click)="details(parcour.id)">
+				    <td>{{parcour.nom}}</td>
+				  </tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>

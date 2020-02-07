@@ -1,0 +1,95 @@
+
+<nav class="light-blue lighten-1" role="navigation">
+    <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo">ENSPM</a>
+	<!-- <img class="col l2 s12" src="assets/images/logo2.png" alt="logo"> -->
+      <ul class="right hide-on-med-and-down">
+        <li><a href="#">Memoires</a></li>
+        <li><a [routerLink]="['/auteurs']">Etudiants</a></li>
+        <li><a [routerLink]="['/enseignants']">Encadreurs</a></li>
+        <li><a [routerLink]="['/parcours']">Parcours</a></li>
+        <li><a [routerLink]="['/departements']">Departements</a></li>
+        <li><a [routerLink]="['/specialisations']">Options</a></li>
+        <li><a [routerLink]="['/users']">Utilisateurs</a></li>
+        <li><a [routerLink]="['/roles']">Roles</a></li>
+      </ul>
+      <a href="#" data-target="nav-mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+    </div>
+</nav>
+
+<ul id="slide-out" class="sidenav">
+	<li>
+		<div class="user-view">
+	      	<a><img class="circle" src="assets/images/profil.png"></a>
+	      	<a ><span class="black-text name">Username</span></a>
+	      	<a ><span class="black-text email">email@gmail.com</span></a>
+		</div>
+	</li>
+	<li><a href="#!"><i class="material-icons">cloud</i>First Link With Icon</a></li>
+	<li><a href="#!">Second Link</a></li>
+	<li><div class="divider"></div></li>
+	<li><a class="subheader">Subheader</a></li>
+	<li><a class="waves-effect" href="#!">Third Link With Waves</a></li>
+</ul>
+<a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+<div class="row">
+	<form >
+		<input
+			id="search" 
+			[(ngModel)]="searchInput" 
+			[ngModelOptions]="{standalone: true}" 
+			type="text" 
+			placeholder="Recherche" 
+			class="input-field col offset-s4 s4"
+			(input)="emettre()"/>
+		<button class="material-icons" (click)="emettre">search</button>
+	</form>
+</div>
+<div>
+	<router-outlet></router-outlet>
+</div>
+<div class="row">
+	<footer class="page-footer orange">
+    <div class="container">
+      <div class="row">
+        <div class="col l3 s12">
+          <h5 class="white-text">ENSPM</h5>
+          <p class="grey-text text-lighten-4">
+          	L'Ecole Nationale Supérieure Polytechnique de Maroua est un établissement de l’Université de Maroua qui forme des Ingénieurs dans plusieurs domaines
+          </p>
+        </div>
+         <div class="col l3 s12">
+          <h5 class="white-text">Lien rapide</h5>
+          <ul>
+            <li><a class="white-text" href="#!">Link 1</a></li>
+            <li><a class="white-text" href="#!">Link 2</a></li>
+            <li><a class="white-text" href="#!">Link 3</a></li>
+            <li><a class="white-text" href="#!">Link 4</a></li>
+          </ul>
+        </div>
+        <div class="col l3 s12">
+          <h5 class="white-text">Lien rapide</h5>
+          <ul>
+            <li><a class="white-text" href="#!">Link 1</a></li>
+            <li><a class="white-text" href="#!">Link 2</a></li>
+            <li><a class="white-text" href="#!">Link 3</a></li>
+            <li><a class="white-text" href="#!">Link 4</a></li>
+          </ul>
+        </div>
+        <div class="col l3 s12">
+          <h5 class="white-text">Contactez nous</h5>
+          <ul>
+            <li><a class="white-text">Maroua Pitoare</a></li>
+            <li><a class="white-text">+237 699 99 99 99</a></li>
+            <li><a class="white-text">info@enspm.univ-maroua.cm</a></li>
+            <li><a class="white-text">www.enspm.univ-maroua.cm</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="light-blue">
+      <div class="container">
+      Copyright ©  <a class="white-text text-lighten-3" href="#"> ENSPM->INFOTEL->Gelo -2019/2020</a>
+      </div>
+    </div>
+  </footer>
+</div>

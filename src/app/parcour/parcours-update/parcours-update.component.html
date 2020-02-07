@@ -1,0 +1,30 @@
+<div class="modal">
+    <div class="modal-content">
+      <h4>Modifier Un Parcours</h4>
+    </div>
+    <div class="row">
+    	<div class="modal-body">
+    	<div class="row input-field hide">
+		    <label>ID</label>
+		    <input type="text"  [(ngModel)]="parcour.id">
+		</div>
+		<div class="row">
+			<div class="input-field col s6">Nom:
+				<input type="text"  [(ngModel)]="parcour.nom">
+			</div>
+		</div>
+    </div>
+
+    <div class="modal-footer">
+    	<div class="row">
+	      <div class="col l6 m6 s12 center">
+				<button (click)='closeAll()' class="btn red">Annuler</button>
+			</div>
+			<div class="col l6 m6 s12 center">
+				<button (click)="onSaveParcour()" class="btn">Envoyer</button>
+			</div>
+    	</div>
+	</div>
+    </div>
+    
+  </div>

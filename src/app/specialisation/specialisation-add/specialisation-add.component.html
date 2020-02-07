@@ -1,0 +1,47 @@
+<div class="modal">
+    <div class="modal-content">
+      <h4>Ajouter Une Option</h4>
+    </div>
+    <form   (ngSubmit)="onSaveSpecialisation()">
+    	<div class="modal-body">
+			<div class="row input-field">
+				<label>Code</label>
+				<input type="text" name="code" [(ngModel)]="specialisation.code">
+			</div>
+			<div class="row input-field">
+				<label>Description</label>
+				<input type="text" name="description" [(ngModel)]="specialisation.description">
+			</div>
+			<div class="row">
+				<label for="departement">Departement</label>
+				<select id="departement" class="browser-default" name="departement"  >
+				    <option value="" disabled selected>Choisir un Departement</option>
+				    <option *ngFor="let i=index,let departement of departements" [value]="departement.id" (click)="updateDepartement(departement)">
+				    	{{departement.code}}
+				    </option>
+			  	</select>
+			</div>
+			<div class="row">
+				<label for="parcours">Parcours</label>
+				<select id="parcours" class="browser-default" name="parcours"  >
+				    <option value="" disabled selected>Choisir un Parcours</option>
+				    <option *ngFor="let i=index,let p of parcours" [value]="parcours.id" (click)="updateParcours(p)">
+				    	{{p.nom}}
+				    </option>
+			  	</select>
+			</div>
+	    </div>
+	    <div class="modal-footer">
+	    	<div class="row">
+		      <div class="col l6 m6 s12 center">
+					<button (click)='closeAll()' class="btn red">Annuler</button>
+				</div>
+				<div class="col l6 m6 s12 center">
+					<button  type="submit" class="btn">Envoyer</button>
+				</div>
+	    	</div>
+		</div>
+    </form>
+    	
+  </div>
+

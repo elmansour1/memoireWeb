@@ -1,0 +1,77 @@
+<div class="modal">
+    <div class="modal-content">
+      <h4>Ajouter Un Memoire</h4>
+    </div>
+    <form   (ngSubmit)="onSaveMemoire()">
+    	<div class="modal-body">
+			<div class="row input-field">
+				<label>Titre</label>
+				<input type="text" name="code" [(ngModel)]="memoire.titre">
+			</div>
+			<div class="row input-field">
+				<!-- <label>Date Publication</label> -->
+				<input type="date" name="datePublication" [(ngModel)]="memoire.datePublication">
+			</div>
+			<div class="row input-field">
+				<label>Mots clé</label>
+				<input type="text" name="motsCles" [(ngModel)]="memoire.motsCles">
+			</div>
+			<div class="row input-field">
+				<label>Resume</label>
+				<textarea class="materialize-textarea" name="resume" [(ngModel)]="memoire.resume"></textarea>
+			</div>
+			<div class="row input-field">
+				<label>Abstract</label>
+				<textarea class="materialize-textarea" name="abstrat" [(ngModel)]="memoire.abstrat"></textarea>
+			</div>
+			<div class="file-field input-field">
+			    <div class="btn">
+			        <span>File</span>
+			        <input type="file" >
+			    </div>
+			    <div class="file-path-wrapper">
+			        <input class="file-path validate" type="text" placeholder="Ajouter votre fichier pdf">
+			    </div>
+		    </div>
+			<!-- <div class="row">
+				<label for="encadreurs">Encadreurs</label>
+				<select id="encadreurs" class="browser-default" name="encadreurs">
+				    <option value="" disabled selected>Choisir les Encadreurs</option>
+				    <option *ngFor="let i=index,let departement of departements" [value]="departement.id" (click)="updateDepartement(departement)">
+				    	{{departement.code}}
+				    </option>
+			  	</select>
+			</div> -->
+			<!-- <div class="row input-field">
+			    <select multiple>
+			      <option value="" disabled selected>Choisir les Encadreurs</option>
+			       <option *ngFor="let i=index,let departement of departements" [value]="departement.id" (click)="updateDepartement(departement)">
+				    	{{departement.code}}
+				    </option>
+			    </select> -->
+			    <!-- <label>Materialize Multiple Select</label> -->
+			 <!-- </div> -->
+			<!-- <div class="row">
+				<label for="auteur">Auteurs</label>
+				<select id="auteur" class="browser-default" name="auteur"  >
+				    <option value="" disabled selected>Choisir un Auteur ou les Auteurs</option>
+				    <option *ngFor="let i=index,let p of memoires" [value]="auteur.id" (click)="updateAuteurs(p)">
+				    	{{p.id}}
+				    </option>
+			  	</select>
+			</div> -->
+	    </div>
+	    <div class="modal-footer">
+	    	<div class="row">
+		      <div class="col l6 m6 s12 center">
+					<button (click)='closeAll()' class="btn red">Annuler</button>
+				</div>
+				<div class="col l6 m6 s12 center">
+					<button  type="submit" class="btn">Envoyer</button>
+				</div>
+	    	</div>
+		</div>
+    </form>
+    	
+  </div>
+

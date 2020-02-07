@@ -1,0 +1,26 @@
+<div class="modal">
+    <div class="modal-content">
+      <h4>Ajouter Un Encadreur ou Enseignant</h4>
+    </div>
+    <div class="modal-body">
+		<div class="row input-field">
+			<label>Nom-Prenom</label>
+			<input type="text"  [(ngModel)]="enseignant.nom">
+		</div>
+		<div class="row input-field">
+			<label>Grade</label>
+			<input type="text"  [(ngModel)]="enseignant.grade">
+		</div>
+    </div>
+    <div class="modal-footer">
+    	<div class="row">
+	      <div class="col l6 m6 s12 center">
+				<button (click)='closeAll()' class="btn red">Annuler</button>
+			</div>
+			<div class="col l6 m6 s12 center">
+				<button (click)="onSaveEnseignant()" class="btn">Envoyer</button>
+			</div>
+    	</div>
+	</div>
+  </div>
+

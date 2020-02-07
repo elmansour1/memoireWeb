@@ -1,0 +1,53 @@
+<div class="modal">
+    <div class="modal-content">
+      <h4>Modifier Une Option</h4>
+    </div>
+    <div class="row">
+    	<div class="modal-body">
+    	<div class="row input-field hide">
+		    <label>ID</label>
+		    <input type="text"  [(ngModel)]="specialisation.id">
+		</div>
+		<div class="row">
+			
+			<div class="input-field col s6">Code:
+				<input type="text"  [(ngModel)]="specialisation.code">
+				<!-- <label>Matricule</label> -->
+			</div>
+			<div class="input-field col s6">Description:
+				<input type="text"  [(ngModel)]="specialisation.description">
+				<!-- <label>Nom-Prenom</label> -->
+			</div>
+		</div>
+		<div class="row">
+				<label for="departement">Departement</label>
+				<select id="departement" class="browser-default" name="departement"  >
+				    <option value="" disabled selected>Choisir un Departement</option>
+				    <option *ngFor="let i=index,let departement of departements" [value]="departement.id" (click)="updateDepartement(departement)">
+				    	{{departement.code}}
+				    </option>
+			  	</select>
+			</div>
+			<div class="row">
+				<label for="parcours">Parcours</label>
+				<select id="parcours" class="browser-default" name="parcours"  >
+				    <option value="" disabled selected>Choisir un Parcours</option>
+				    <option *ngFor="let i=index,let p of parcours" [value]="parcours.id" (click)="updateParcours(p)">
+				    	{{p.id}}
+				    </option>
+			  	</select>
+			</div>
+		</div>
+    </div>
+
+    <div class="modal-footer">
+    	<div class="row">
+	      <div class="col l6 m6 s12 center">
+				<button (click)='closeAll()' class="btn red">Annuler</button>
+			</div>
+			<div class="col l6 m6 s12 center">
+				<button (click)="onSaveSpecialisation()" class="btn">Envoyer</button>
+			</div>
+    	</div>
+	</div>
+  </div>

@@ -1,0 +1,35 @@
+<div class="modal">
+    <div class="modal-content">
+      <h4>Modifier Un Auteur</h4>
+    </div>
+    <div class="row">
+    	<div class="modal-body">
+    	<div class="row input-field hide">
+		    <label>ID</label>
+		    <input type="text"  [(ngModel)]="enseignant.id">
+		</div>
+		<div class="row">
+			<div class="input-field col s6">Nom-Prenom:
+				<input type="text"  [(ngModel)]="enseignant.nom">
+				<!-- <label>Matricule</label> -->
+			</div>
+			<div class="input-field col s6">Grade:
+				<input type="text"  [(ngModel)]="enseignant.grade">
+				<!-- <label>Nom-Prenom</label> -->
+			</div>
+		</div>
+    </div>
+
+    <div class="modal-footer">
+    	<div class="row">
+	      <div class="col l6 m6 s12 center">
+				<button (click)='closeAll()' class="btn red">Annuler</button>
+			</div>
+			<div class="col l6 m6 s12 center">
+				<button (click)="onSaveEnseignant()" class="btn">Envoyer</button>
+			</div>
+    	</div>
+	</div>
+    </div>
+    
+  </div>

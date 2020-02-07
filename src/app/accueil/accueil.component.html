@@ -1,0 +1,116 @@
+<div class="row">
+	
+</div>
+  <nav class="light-blue lighten-1" role="navigation">
+    <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo">ENSPM</a>
+	<!-- <img class="col l2 s12" src="assets/images/logo2.png" alt="logo"> -->
+      <ul class="right hide-on-med-and-down">
+        <li><a href="#">Accueil</a></li>
+        <li><a href="#">Etudiants</a></li>
+        <li><a href="#">Encadreurs</a></li>
+        <li><a href="#">Memoires</a></li>
+        <li><a href="#">Parcours</a></li>
+        <li><a href="#">Departements</a></li>
+        <li><a href="#">Options</a></li>
+      </ul>
+      <a href="#" data-target="nav-mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+    </div>
+  </nav>
+	<ul id="slide-out" class="sidenav">
+	    <li>
+	    	<div class="user-view">
+	      	<div class="background">
+	        	<!-- <img src="assets/images/logo2.png"> -->
+	      	</div>
+		      	<!-- <a href="#user"><img class="circle" src="assets/images/logo2.png"></a> -->
+		      	<a href="#name"><span class="white-text name">John Doe</span></a>
+		      	<a href="#email"><span class="white-text email">jdandturk@gmail.com</span></a>
+	    	</div>
+	    </li>
+	    <li><a href="#!"><i class="material-icons">cloud</i>First Link With Icon</a></li>
+	    <li><a href="#!">Second Link</a></li>
+	    <li><div class="divider"></div></li>
+	    <li><a class="subheader">Subheader</a></li>
+	    <li><a class="waves-effect" href="#!">Third Link With Waves</a></li>
+	  </ul>
+	  <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+<div class="row">
+	<form>
+		<input
+			id="search" 
+			[(ngModel)]="searchInput" 
+			[ngModelOptions]="{standalone: true}" 
+			type="text" 
+			placeholder="Recherche" 
+			class="input-field col s6"
+			(input)="emettre()"/>
+	
+		<i class="material-icons light-blue-text text-lighten-1" (click)="emettre">search</i>
+	</form>
+</div>
+<div class="row">
+	
+</div>
+
+<div class="row">
+	 <table>
+        <thead>
+          <tr>
+              <th>Titre</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr *ngFor="let specialisation of specialisations">
+            <td>{{specialisation.titre}}</td>
+          </tr>
+        </tbody>
+      </table>
+</div>
+
+<div class="row">
+	<footer class="page-footer orange">
+    <div class="container">
+      <div class="row">
+        <div class="col l3 s12">
+          <h5 class="white-text">ENSPM</h5>
+          <p class="grey-text text-lighten-4">
+          	L'Ecole Nationale Supérieure Polytechnique de Maroua est un établissement de l’Université de Maroua qui forme des Ingénieurs dans plusieurs domaines
+          </p>
+        </div>
+         <div class="col l3 s12">
+          <h5 class="white-text">Lien rapide</h5>
+          <ul>
+            <li><a class="white-text" href="#!">Link 1</a></li>
+            <li><a class="white-text" href="#!">Link 2</a></li>
+            <li><a class="white-text" href="#!">Link 3</a></li>
+            <li><a class="white-text" href="#!">Link 4</a></li>
+          </ul>
+        </div>
+        <div class="col l3 s12">
+          <h5 class="white-text">Lien rapide</h5>
+          <ul>
+            <li><a class="white-text" href="#!">Link 1</a></li>
+            <li><a class="white-text" href="#!">Link 2</a></li>
+            <li><a class="white-text" href="#!">Link 3</a></li>
+            <li><a class="white-text" href="#!">Link 4</a></li>
+          </ul>
+        </div>
+        <div class="col l3 s12">
+          <h5 class="white-text">Contactez nous</h5>
+          <ul>
+            <li><a class="white-text">Maroua Pitoare</a></li>
+            <li><a class="white-text">+237 699 99 99 99</a></li>
+            <li><a class="white-text">info@enspm.univ-maroua.cm</a></li>
+            <li><a class="white-text">www.enspm.univ-maroua.cm</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="light-blue">
+      <div class="container">
+      Copyright ©  <a class="white-text text-lighten-3" href="#"> ENSPM->INFOTEL->Gelo -2019/2020</a>
+      </div>
+    </div>
+  </footer>
+</div>

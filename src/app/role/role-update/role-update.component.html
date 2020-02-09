@@ -1,1 +1,33 @@
-<p>role-update works!</p>
+<div class="modal">
+    <div class="container">
+		<div class="modal-content center">
+			<h4>Modifier un role</h4>
+		  </div>
+		  <div class="row">
+			  <div class="modal-body">
+			  <div class="row input-field hide">
+				  <label>ID</label>
+				  <input type="text"  [(ngModel)]="role.id">
+			  </div>
+			  <div class="row">
+				  <div class="input-field col s6">Nom-Role:
+					  <input type="text"  [(ngModel)]="role.rolename">
+					  <!-- <label>Nom-Prenom</label> -->
+				  </div>
+			  </div>
+		  </div>
+	  
+		  <div class="modal-footer">
+			  <div class="row">
+				<div class="col l6 m6 s12 center">
+					  <button (click)='closeAll()' class="btn red"><i class="material-icons right">cancel</i>Annuler</button>
+				  </div>
+				  <div class="col l6 m6 s12 center">
+					  <button (click)="onSaveRole()" class="btn "><i class="material-icons right">send</i>Envoyer</button>
+				  </div>
+			  </div>
+		  </div>
+		  </div>
+		  
+	</div>
+  </div>

@@ -1,1 +1,36 @@
-<p>user-add works!</p>
+<div class="modal">
+    <div class="modal-content container">
+      <h4 class="center">Ajouter un utilisateur</h4>
+    </div>
+    <div class="modal-body container">
+		<div class="row input-field">
+			<i class="material-icons prefix">account_circle</i>
+			<input type="text"  [(ngModel)]="user.login" class="validate">
+			<label>Login</label>
+		</div>
+		<div class="row input-field">
+			<i class="material-icons prefix">vpn_key</i>
+			<input type="password"  [(ngModel)]="user.password" class="validate">
+			<label>Password</label>
+		</div>
+		<div class="row input-field">
+				
+				<select id="role" class="browser-default" name="role"  >
+				    <option value="" disabled selected>Choisir le role</option>
+				    <option *ngFor="let i=index,let r of roles" [value]="r.id" (click)="updateRole(r)">
+				    	{{r.rolename}}
+				    </option><label for="role">Role</label>
+			  	</select>
+			</div>
+    </div>
+    <div class="modal-footer">
+    	<div class="row">
+	      <div class="col l6 m6 s12 center">
+				<button (click)='closeAll()' class="btn red">Annuler <i class="material-icons right">cancel</i></button>
+			</div>
+			<div class="col l6 m6 s12 center">
+				<button (click)="onSaveUser()" class="btn">Envoyer <i class="material-icons right">send</i></button>
+			</div>
+    	</div>
+	</div>
+  </div>

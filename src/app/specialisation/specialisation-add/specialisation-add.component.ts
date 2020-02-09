@@ -60,21 +60,6 @@ export class SpecialisationAddComponent implements OnInit {
   onSaveSpecialisation(){
   		console.log("BONJOUR");
 	  	console.log(this.specialisation);
-	 //  	// this.specialisation.departement = this
-	 //  	let tmp:Specialisation={
-  //   code:this.value.code,
-  //   description:this.value.description,
-  //   // descriptionEnglish:this.optionForm.value.descriptionEnglish,
-  //   departement:this.value.departement,
-  //   parcours:this.value.parcour
-  // }
-	 //  	this.specialisationService.add(tmp)
-	 //  		.subscribe(res=>{
-	 //  			this.router.navigateByUrl("/specialisations");
-	 //  		},err=>{
-	 //  			console.log(err);
-	 //  		});
-
 	 let tmp:Specialisation={
     code:this.specialisation.code,
     description:this.specialisation.description,

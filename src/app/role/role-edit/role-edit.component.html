@@ -1,1 +1,27 @@
-<p>role-edit works!</p>
+<div class="row modal">
+	<div class="container">
+		<div class="row right">
+			<!--div class="col l6 m6 s12 ">
+				<button (click)='closeAll()' class="btn #ffeb3b blue"><i class="material-icons">close</i></button>
+			</div-->
+		</div>
+		<div class="row center">
+			<h5>Détails sur: {{role.rolename}}</h5>
+		</div>
+		<div class="row">
+			<div class="col l6 m6 s12">
+				<b>Nom-Role : </b> {{role.rolename}}
+			</div>
+		</div>	
+		<div class="row">
+		<div class="col l6 m6 s12 center">
+			<button (click)="onEdit()" class="btn"><i class="material-icons right">edit</i>Modifier</button>
+		</div>
+		<div class="col l6 m6 s12 center">
+			<button (click)="onDeleteRole()" class="btn red"><i class="material-icons right">delete</i>Supprimer</button>
+		</div>
+		</div>
+	</div>
+	
+</div>
+

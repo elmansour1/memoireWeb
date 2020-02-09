@@ -1,4 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+
+import { RoleService } from '../../service';
+import { Role }  from '../../model';
+
+declare var $:any;
 
 @Component({
   selector: 'app-role-list',
@@ -7,9 +13,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RoleListComponent implements OnInit {
 
-  constructor() { }
+  roles: Array<Role>;
+
+constructor(private roleService: RoleService, private router: Router) { }
 
   ngOnInit() {
+  	this.roleService.getAll()
+  		.then(data=> this.roles = data);
+  }
+
+  public details(id){
+    this.router.navigate(['/roles/edit/'+id]);
   }
 
 }

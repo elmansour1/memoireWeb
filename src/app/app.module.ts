@@ -10,12 +10,18 @@ import { ComponentModule } from './component/component.module';
 
 
 import { SpecialisationService }  from './service/specialisation.service';
+import { LoginComponent } from './login/login.component';
+import { SigninComponent } from './signin/signin.component';
+import { LogoutComponent } from './logout/logout.component';
 
 
 
 @NgModule({
   declarations: [
     AppComponent,
+    LoginComponent,
+    SigninComponent,
+    LogoutComponent,
   ],
   imports: [
     BrowserModule,

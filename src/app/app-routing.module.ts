@@ -3,6 +3,10 @@ import {FormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
 import { RouterModule,Routes } from '@angular/router';
 
+import { LoginComponent } from './login/login.component';
+import { SigninComponent }  from './signin/signin.component';
+import { LogoutComponent }  from './logout/logout.component';
+
 const routes: Routes = [
 	{
 		path:'', loadChildren:()=>import('./memoire/memoire.module').then(mod=>mod.MemoireModule)
@@ -27,6 +31,15 @@ const routes: Routes = [
 	},
 	{
 		path: 'roles', loadChildren:()=>import('./role/role.module').then(mod=>mod.RoleModule)
+	},
+	{
+		path: 'login', component: LoginComponent 
+	},
+	{
+		path: 'signin', component: SigninComponent
+	},
+	{
+		path: 'logout', component: LogoutComponent
 	}
 ];
 

@@ -1,1 +1,44 @@
-<p>user-update works!</p>
+<div class="modal">
+    <div class="modal-content">
+      <h4>Modifier Un utilisateur</h4>
+    </div>
+    <div class="row">
+    	<div class="modal-body">
+    	<div class="row input-field hide">
+		    <label>ID</label>
+		    <input type="text"  [(ngModel)]="user.id">
+		</div>
+		<div class="row">
+			
+			<div class="input-field col s6">Login:
+				<input type="text"  [(ngModel)]="user.login">
+				<!-- <label>Matricule</label> -->
+			</div>
+			<div class="input-field col s6">Mot de passe:
+				<input type="password"  [(ngModel)]="user.password">
+				<!-- <label>Nom-Prenom</label> -->
+			</div>
+		</div>
+		<div class="row">
+				<label for="role">Role</label>
+				<select id="role" class="browser-default" name="role"  >
+				    <option value="" disabled selected>Choisir un Role</option>
+				    <option *ngFor="let i=index,let role of roles" [value]="role.id" (click)="updateRole(role)">
+				    	{{role.rolename}}
+				    </option>
+			  	</select>
+			</div>
+		</div>
+    </div>
+
+    <div class="modal-footer">
+    	<div class="row">
+	      <div class="col l6 m6 s12 center">
+				<button (click)='closeAll()' class="btn red">Annuler</button>
+			</div>
+			<div class="col l6 m6 s12 center">
+				<button (click)="onSaveUser()" class="btn">Envoyer</button>
+			</div>
+    	</div>
+	</div>
+  </div>

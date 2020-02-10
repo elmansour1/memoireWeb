@@ -4,7 +4,7 @@ export class Auteur{
 	public nom:string;
 	public email:string;
 	public telephone:string;
-
+	public motDePasse: string;
 	/*constructor(){
 
   }*/

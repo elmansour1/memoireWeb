@@ -1,15 +1,17 @@
-<div class="modal">
-    <div class="modal-content">
-      <h4>Ajouter Un Departement</h4>
+<div class="modal" id="modal">
+    <div class="modal-content container">
+      <h4 class="center">Ajouter Un Departement</h4>
     </div>
-    <div class="modal-body">
+    <div class="modal-body container">
 		<div class="row input-field">
+			<i class="material-icons prefix">plus_one</i>
+			<input type="text"  [(ngModel)]="departement.code" class="validate">
 			<label>Code</label>
-			<input type="text"  [(ngModel)]="departement.code">
 		</div>
 		<div class="row input-field">
+			<i class="material-icons prefix">account_circle</i>
+			<input type="text"  [(ngModel)]="departement.intitule" class="validate">
 			<label>Intitulé</label>
-			<input type="text"  [(ngModel)]="departement.intitule">
 		</div>
     </div>
     <div class="modal-footer">

@@ -31,7 +31,7 @@ export class AuteurEditComponent implements OnInit {
         endingTop: '10%', // Ending top style attribute
         complete: function () { },
         onCloseEnd:function (){
-          //window.history.go(-1);
+          window.history.go(-2);
         }
     });
     this.route.params.subscribe(params =>{

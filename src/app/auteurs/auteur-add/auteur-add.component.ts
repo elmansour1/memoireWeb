@@ -45,7 +45,7 @@ auteur: Auteur = new Auteur() ;
       startingTop: '10%', // Starting top style attribute
       endingTop: '10%', // Ending top style attribute
       complete:function(){ },
-      onCloseEnd:function(){window.history.go(-1)}
+     // onCloseEnd:function(){window.history.go()}
   });
     $(".modal").modal('close');
     this.router.navigateByUrl("auteurs");

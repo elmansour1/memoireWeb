@@ -10,7 +10,7 @@
 			</div>
 			<div class="row input-field">
 				<!-- <label>Date Publication</label> -->
-				<input type="date" name="datePublication" [(ngModel)]="memoire.datePublication">
+				<input type="date" name="datePublication" class="datepicker" [(ngModel)]="memoire.datePublication">
 			</div>
 			<div class="row input-field">
 				<label>Mots clé</label>
@@ -41,17 +41,17 @@
 				    	{{departement.code}}
 				    </option>
 			  	</select>
-			</div> -->
-			<!-- <div class="row input-field">
+			</div>
+			<div class="row input-field">
 			    <select multiple>
 			      <option value="" disabled selected>Choisir les Encadreurs</option>
 			       <option *ngFor="let i=index,let departement of departements" [value]="departement.id" (click)="updateDepartement(departement)">
 				    	{{departement.code}}
 				    </option>
-			    </select> -->
-			    <!-- <label>Materialize Multiple Select</label> -->
-			 <!-- </div> -->
-			<!-- <div class="row">
+			    </select>
+			    <label>Materialize Multiple Select</label>
+			 </div>
+			<div class="row">
 				<label for="auteur">Auteurs</label>
 				<select id="auteur" class="browser-default" name="auteur"  >
 				    <option value="" disabled selected>Choisir un Auteur ou les Auteurs</option>

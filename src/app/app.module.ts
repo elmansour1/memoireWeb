@@ -9,10 +9,11 @@ import { AppComponent } from './app.component';
 import { ComponentModule } from './component/component.module';
 
 
-import { SpecialisationService }  from './service/specialisation.service';
+import { AuthenticationService }  from './service/authentication.service';
 import { LoginComponent } from './login/login.component';
 import { SigninComponent } from './signin/signin.component';
 import { LogoutComponent } from './logout/logout.component';
+import { InscriptionComponent } from './inscription/inscription.component';
 
 
 
@@ -22,6 +23,7 @@ import { LogoutComponent } from './logout/logout.component';
     LoginComponent,
     SigninComponent,
     LogoutComponent,
+    InscriptionComponent,
   ],
   imports: [
     BrowserModule,
@@ -30,7 +32,7 @@ import { LogoutComponent } from './logout/logout.component';
     AppRoutingModule,
     HttpClientModule
   ],
-  providers: [SpecialisationService],
+  providers: [AuthenticationService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -3,16 +3,16 @@
     <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo black-text">ENSPM</a>
 	<!-- <img class="col l2 s12" src="assets/images/logo2.png" alt="logo"> -->
       <ul class="right hide-on-med-and-down black-text">
-        <li class="menuEcriture"><a href="#" class="black-text">Memoires</a></li>
-        <li class="menuEcriture"><a [routerLink]="['/auteurs']" class="black-text">Auteurs</a></li>
-        <li class="menuEcriture"><a [routerLink]="['/enseignants']" class="black-text">Encadreurs</a></li>
-        <li class="menuEcriture"><a [routerLink]="['/parcours']" class="black-text">Parcours</a></li>
-        <li class="menuEcriture"><a [routerLink]="['/departements']" class="black-text">Departements</a></li>
-        <li class="menuEcriture"><a [routerLink]="['/specialisations']" class="black-text">Options</a></li>
-        <li class="menuEcriture"><a [routerLink]="['/users']" class="black-text">Utilisateurs</a></li>
-        <li class="menuEcriture"><a [routerLink]="['/roles']" class="black-text">Roles</a></li>
-        <li class="menuEcriture"><a [routerLink]="['/login']" class="black-text">Connexion</a></li>
-        <li class="menuEcriture"><a [routerLink]="['/signin']" class="black-text">Sign in</a></li>
+        <li class="menuEcriture"><a [routerLink]="['/memoires']" class="black-text">Memoires</a></li>
+        <li *ngIf="!authenticationService.isAdmin()"   class="menuEcriture"><a [routerLink]="['/auteurs']" class="black-text">Auteurs</a></li>
+        <li *ngIf="!authenticationService.isAdmin()"  class="menuEcriture"><a [routerLink]="['/enseignants']" class="black-text">Encadreurs</a></li>
+        <li *ngIf="!authenticationService.isAdmin()"  class="menuEcriture"><a [routerLink]="['/parcours']" class="black-text">Parcours</a></li>
+        <li *ngIf="!authenticationService.isAdmin()"  class="menuEcriture"><a [routerLink]="['/departements']" class="black-text">Departements</a></li>
+        <li *ngIf="!authenticationService.isAdmin()"  class="menuEcriture"><a [routerLink]="['/specialisations']" class="black-text">Options</a></li>
+        <li *ngIf="!authenticationService.isAdmin()"  class="menuEcriture"><a [routerLink]="['/users']" class="black-text">Utilisateurs</a></li>
+        <li *ngIf="!authenticationService.isAdmin()"  class="menuEcriture"><a [routerLink]="['/roles']" class="black-text">Roles</a></li>
+        <li class="menuEcriture"><a [routerLink]="['/inscription']" class="black-text">Inscription</a></li>
+        <li *ngIf="!authenticationService.isAdmin()" class="menuEcriture"><a [routerLink]="['/login']" class="black-text">Sign in</a></li>
 
       </ul>
       <a href="#" data-target="nav-mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
@@ -27,11 +27,8 @@
 	      	<a ><span class="black-text email">email@gmail.com</span></a>
 		</div>
 	</li>
-	<li><a href="#!"><i class="material-icons">cloud</i>First Link With Icon</a></li>
-	<li><a href="#!">Second Link</a></li>
 	<li><div class="divider"></div></li>
-	<li><a class="subheader">Subheader</a></li>
-	<li><a class="waves-effect" href="#!">Third Link With Waves</a></li>
+	<li><a [routerLink]="['/logout']">Deconnexion</a></li>
 </ul>
 <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>
 <div class="row">

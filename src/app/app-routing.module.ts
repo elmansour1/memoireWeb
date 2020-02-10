@@ -6,10 +6,11 @@ import { RouterModule,Routes } from '@angular/router';
 import { LoginComponent } from './login/login.component';
 import { SigninComponent }  from './signin/signin.component';
 import { LogoutComponent }  from './logout/logout.component';
+import { InscriptionComponent }  from './inscription/inscription.component';
 
 const routes: Routes = [
 	{
-		path:'', loadChildren:()=>import('./memoire/memoire.module').then(mod=>mod.MemoireModule)
+		path:'memoires', loadChildren:()=>import('./memoire/memoire.module').then(mod=>mod.MemoireModule)
 	},
 	{
 		path:'auteurs', loadChildren:()=>import('./auteurs/auteur.module').then(mod=>mod.AuteurModule)
@@ -40,6 +41,9 @@ const routes: Routes = [
 	},
 	{
 		path: 'logout', component: LogoutComponent
+	},
+	{
+		path: 'inscription', component: InscriptionComponent
 	}
 ];
 

@@ -6,3 +6,4 @@ export * from './parcours.service';
 export * from './specialisation.service';
 export * from './role.service';
 export * from './user.service';
+export * from './authentication.service';

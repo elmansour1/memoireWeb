@@ -1,6 +1,9 @@
 import { Component,OnInit } from '@angular/core';
 
 
+import {AuthenticationService} from './service/authentication.service';
+
+
 declare var $:any;
 
 @Component({
@@ -11,7 +14,7 @@ declare var $:any;
 export class AppComponent implements OnInit{
   title = 'memoireWeb';
 
-  constructor(){}
+  constructor(private authenticationService: AuthenticationService){}
 
   ngOnInit() {
   	$(document).ready(function(){

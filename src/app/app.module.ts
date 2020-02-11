@@ -16,6 +16,9 @@ import { LogoutComponent } from './logout/logout.component';
 import { InscriptionComponent } from './inscription/inscription.component';
 
 
+import { authInterceptorProviders } from './_helpers/auth.interceptor';
+import { ProfilComponent } from './profil/profil.component';
+
 
 @NgModule({
   declarations: [
@@ -24,6 +27,7 @@ import { InscriptionComponent } from './inscription/inscription.component';
     SigninComponent,
     LogoutComponent,
     InscriptionComponent,
+    ProfilComponent,
   ],
   imports: [
     BrowserModule,
@@ -32,7 +36,7 @@ import { InscriptionComponent } from './inscription/inscription.component';
     AppRoutingModule,
     HttpClientModule
   ],
-  providers: [AuthenticationService],
+  providers: [AuthenticationService,authInterceptorProviders],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

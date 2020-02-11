@@ -1,37 +1,43 @@
 
 <nav class="orange accent-3" role="navigation">
-    <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo black-text">ENSPM</a>
-	<!-- <img class="col l2 s12" src="assets/images/logo2.png" alt="logo"> -->
-      <ul class="right hide-on-med-and-down black-text">
-        <li class="menuEcriture"><a [routerLink]="['/memoires']" class="black-text">Memoires</a></li>
-        <li *ngIf="!authenticationService.isAdmin()"   class="menuEcriture"><a [routerLink]="['/auteurs']" class="black-text">Auteurs</a></li>
-        <li *ngIf="!authenticationService.isAdmin()"  class="menuEcriture"><a [routerLink]="['/enseignants']" class="black-text">Encadreurs</a></li>
-        <li *ngIf="!authenticationService.isAdmin()"  class="menuEcriture"><a [routerLink]="['/parcours']" class="black-text">Parcours</a></li>
-        <li *ngIf="!authenticationService.isAdmin()"  class="menuEcriture"><a [routerLink]="['/departements']" class="black-text">Departements</a></li>
-        <li *ngIf="!authenticationService.isAdmin()"  class="menuEcriture"><a [routerLink]="['/specialisations']" class="black-text">Options</a></li>
-        <li *ngIf="!authenticationService.isAdmin()"  class="menuEcriture"><a [routerLink]="['/users']" class="black-text">Utilisateurs</a></li>
-        <li *ngIf="!authenticationService.isAdmin()"  class="menuEcriture"><a [routerLink]="['/roles']" class="black-text">Roles</a></li>
-        <li class="menuEcriture"><a [routerLink]="['/inscription']" class="black-text">Inscription</a></li>
-        <li *ngIf="!authenticationService.isAdmin()" class="menuEcriture"><a [routerLink]="['/login']" class="black-text">Sign in</a></li>
-
+    <div class="nav-wrapper container">
+      <a id="logo-container" [routerLink]="['/']" class="brand-logo black-text">ENSPM</a>
+	<!-- <img class="col l2 s12" src="assets/images/logo2.png" alt="logo"> *ngIf="showVisitorBoard"-->
+      <ul class="right hide-on-med-and-down black-text" >
+        <li class="menuEcriture" *ngIf="showUserBoard"><a [routerLink]="['/']" class="black-text">Memoires</a></li>
+        <li   class="menuEcriture" *ngIf="showAdminBoard"><a [routerLink]="['/auteurs']" class="black-text">Auteurs</a></li>
+        <li  class="menuEcriture" *ngIf="showAdminBoard"><a [routerLink]="['/enseignants']" class="black-text">Encadreurs</a></li>
+        <li   class="menuEcriture" *ngIf="showAdminBoard"><a [routerLink]="['/parcours']" class="black-text">Parcours</a></li>
+        <li   class="menuEcriture" *ngIf="showAdminBoard"><a [routerLink]="['/departements']" class="black-text">Departements</a></li>
+        <li   class="menuEcriture" *ngIf="showAdminBoard"><a [routerLink]="['/specialisations']" class="black-text">Options</a></li>
+        <li   class="menuEcriture" *ngIf="showAdminBoard"><a [routerLink]="['/users']" class="black-text">Utilisateurs</a></li>
+        <li   class="menuEcriture" *ngIf="showAdminBoard"><a [routerLink]="['/roles']" class="black-text">Roles</a></li>
+        <li class="menuEcriture" *ngIf="!isLoggedIn"><a [routerLink]="['/inscription']" class="black-text">Inscription</a></li>
+        <li  class="menuEcriture" *ngIf="!isLoggedIn"><a [routerLink]="['/login']" class="black-text">Sign in</a></li>
+        <li *ngIf="isLoggedIn"><a>{{ username }}</a></li>
       </ul>
       <a href="#" data-target="nav-mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
     </div>
+
 </nav>
 
-<ul id="slide-out" class="sidenav">
-	<li>
-		<div class="user-view">
-	      	<a><img class="circle" src="assets/images/profil.png"></a>
-	      	<a ><span class="black-text name">Username</span></a>
-	      	<a ><span class="black-text email">email@gmail.com</span></a>
-		</div>
-	</li>
-	<li><div class="divider"></div></li>
-	<li><a [routerLink]="['/logout']">Deconnexion</a></li>
+<ul id="slide-out" class="sidenav" *ngIf="currentUser; else loggedOut">
+  <li>
+    <div class="user-view" >
+          <a><img class="circle" src="assets/images/profil.png"></a>
+          <a ><span class="black-text name">{{ currentUser.username }}</span></a>
+          <!-- <p>
+            {{ currentUser.accessToken.substring(0, 20) }} ...
+            {{ currentUser.accessToken.substr(currentUser.accessToken.length - 20) }}
+          </p> -->
+          <a ><span class="black-text email">{{ currentUser.email }}</span></a>
+    </div>
+  </li>
+  <li><div class="divider"></div></li>
+  <li><a href (click)="logout()">Deconnexion</a></li>
 </ul>
- <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons medium">menu</i></a>
-<!--<div class="row">
+<a href data-target="slide-out" class="sidenav-trigger" *ngIf="isLoggedIn"><i class="material-icons">menu</i></a>
+<div class="row">
 	<form >
 		<input
 			id="search" 
@@ -43,7 +49,7 @@
 			(input)="emettre()"/>
 		<button class="material-icons" (click)="emettre">search</button>
 	</form>
-</div> -->
+</div>
 <div>
 	<router-outlet></router-outlet>
 </div>
@@ -71,7 +77,7 @@
     </div>
     <div class="blue-grey darken-3">
       <div class="container center">
-      Copyright ©  <a class="white-text text-lighten-3" href="#"> ENSPM->INFOTEL->Gelo -2019/2020</a>
+      Copyright ©  <a class="white-text text-lighten-3" [routerLink]="['/']"> ENSPM->INFOTEL->Gelo -2019/2020</a>
       </div>
     </div>
   </footer>

@@ -4,13 +4,14 @@ import {HttpClientModule} from '@angular/common/http';
 import { RouterModule,Routes } from '@angular/router';
 
 import { LoginComponent } from './login/login.component';
-import { SigninComponent }  from './signin/signin.component';
+// import { SigninComponent }  from './signin/signin.component';
 import { LogoutComponent }  from './logout/logout.component';
 import { InscriptionComponent }  from './inscription/inscription.component';
+import { ProfilComponent }  from './profil/profil.component';
 
 const routes: Routes = [
 	{
-		path:'memoires', loadChildren:()=>import('./memoire/memoire.module').then(mod=>mod.MemoireModule)
+		path:'', loadChildren:()=>import('./memoire/memoire.module').then(mod=>mod.MemoireModule)
 	},
 	{
 		path:'auteurs', loadChildren:()=>import('./auteurs/auteur.module').then(mod=>mod.AuteurModule)
@@ -37,13 +38,13 @@ const routes: Routes = [
 		path: 'login', component: LoginComponent 
 	},
 	{
-		path: 'signin', component: SigninComponent
-	},
-	{
 		path: 'logout', component: LogoutComponent
 	},
 	{
 		path: 'inscription', component: InscriptionComponent
+	},
+	{
+		path:'profile', component: ProfilComponent
 	}
 ];
 

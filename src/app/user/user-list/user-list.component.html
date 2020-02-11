@@ -5,7 +5,7 @@
 				<h4 class="header center">Liste des utilisateurs</h4>
 			</div>
 			<div class="right">
-				<button [routerLink]="['add']" data-target="modal1" class="col offset-s8-s8 btn-floating btn-large waves-effect waves-light green btn modal-trigger" ><i class="material-icons">add</i></button>
+				<button [routerLink]="['add']" data-target="modal1" class="col offset-s8-s8 btn-floating btn-large waves-effect waves-light teal darken-2 btn modal-trigger" ><i class="material-icons">add</i></button>
 			</div>
 			
 		</div>
@@ -15,7 +15,7 @@
 					<thead>
 					  <tr>
 						  <th>Numéro</th>
-						  <th>Login</th>
+						  <th>Username</th>
 						  <!-- <th>Mot de Passe</th> -->
 						  <th>Role</th>
 						  <th>Détailler</th>
@@ -24,9 +24,9 @@
 					<tbody>
 					  <tr *ngFor="let i=index,let user of users">
 						  <td>{{i+1}}</td>
-						<td>{{user.login}}</td>
+						<td>{{user.username}}</td>
 						<!-- <td>{{user.password}}</td> -->
-						<td>{{user.role.rolename}}</td>
+						<td>{{user.roles.name}}</td>
 						 <td>
 							<div>
 								<button class="waves-effect waves-teal btn-flat" (click)="details(user.id)"><i class="material-icons large">zoom_in</i></button>

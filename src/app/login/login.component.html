@@ -1,18 +1,40 @@
 <div class="modal" id="modal">
     <div class="modal-content container">
-      <h4 class="center">Sign In</h4>
+      <h4 class="center" *ngIf="!isLoggedIn">Sign In</h4>
+      <h4 class="center"> </h4>
     </div>
-    <form #f="ngForm" (ngSubmit)="onLogin(f.value)">
+    <form *ngIf="!isLoggedIn"
+      name="form"
+      (ngSubmit)="f.form.valid && onSubmit()"
+      #f="ngForm"
+      novalidate >
     	<div class="modal-body container">
 		<div class="row input-field">
 			<i class="material-icons prefix">account_circle</i>
-			<input type="text"  name="username" ngModel class="validate">
+			<input type="text"  name="username"
+	          [(ngModel)]="form.username"
+	          required
+	          #username="ngModel" class="validate">
 			<label>Username:</label>
+			<div class="materialert error" *ngIf="f.submitted && username.invalid">
+			    <div class="material-icons">error_outline</div>
+			    Username is required!
+			</div>
 		</div>
 		<div class="row input-field">
 			<i class="material-icons prefix">vpn_key</i>
-			<input type="password"  name="password" ngModel class="validate">
+			<input type="password"  [(ngModel)]="form.password"
+	          required
+	          minlength="6"
+	          name="password"
+	          #password="ngModel" class="validate">
 			<label>Password:</label>
+			<div class="materialert error" *ngIf="f.submitted && password.invalid">
+			    <div *ngIf="password.errors.required">Password is required</div>
+		        <div *ngIf="password.errors.minlength">
+		            Password must be at least 6 characters
+		        </div>
+			</div>
 		</div>
     </div>
     <div class="modal-footer">
@@ -24,6 +46,19 @@
 				<button type="submit" class="btn">Envoyer <i class="material-icons right">send</i></button>
 			</div>
     	</div>
+    	<div class="row">
+    		<div class="materialert error" *ngIf="f.submitted && isLoginFailed">
+			    <div class="material-icons">error_outline</div>
+			    Login failed: {{ errorMessage }}
+			</div>
+    	</div>
 	</div>
     </form>
+    <div class="materialert success" *ngIf="isLoggedIn">
+		<div class="material-icons">check</div>
+		Your Logged Mr. {{ currentUser.username }}.
+	</div>
+	<div class="col l6 m6 s12 center">
+	<button *ngIf="isLoggedIn" (click)='menu()' class="btn red center">Menu <i class="material-icons">menu</i></button>
+	</div>
   </div>

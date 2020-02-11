@@ -1,0 +1,15 @@
+<ul id="slide-out" class="sidenav" *ngIf="currentUser; else loggedOut">
+	<li>
+		<div class="user-view" >
+	      	<a><img class="circle" src="assets/images/profil.png"></a>
+	      	<a ><span class="black-text name">{{ currentUser.username }}</span></a>
+          <!-- <p>
+            {{ currentUser.accessToken.substring(0, 20) }} ...
+            {{ currentUser.accessToken.substr(currentUser.accessToken.length - 20) }}
+          </p> -->
+	      	<a ><span class="black-text email">{{ currentUser.email }}</span></a>
+		</div>
+	</li>
+	<li><div class="divider"></div></li>
+	<li><a href (click)="logout()">Deconnexion</a></li>
+</ul>

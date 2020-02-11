@@ -1,28 +1,32 @@
-<div id="borderless-table">
-	<div class="row">
-		<div class="col l4 s12">
-			<h4 class="header">Liste des Memoires</h4>
+<div class="container">
+	<div id="borderless-table">
+		<div class="row">
+			<div class="col l4 s12">
+				<h4 class="header">Liste des Memoires</h4>
+			</div>
+			<div class="right">
+					<button *ngIf="showUserBoard" [routerLink]="['add']" data-target="modal1" class="col offset-s8-s8 btn-floating btn-large waves-effect waves-light teal darken-2 btn modal-trigger" ><i class="material-icons">add</i></button>
+				</div>
 		</div>
-		<button [routerLink]="['add']" data-target="modal1" class="col offset-s8-s8 btn-floating btn-large waves-effect waves-light green btn modal-trigger" ><i class="material-icons">add</i></button>
-	</div>
-	<div class="row">
-		<div class="col s12">
-			<table>
-				<thead>
-				  <tr>
-				      <th>Titre</th>
-				      <th>Date Publication</th>
-				  </tr>
-				</thead>
-				<tbody>
-				  <tr *ngFor="let memoire of memoires" (click)="details(memoire.id)">
-				    <!-- <td>{{memoire.matricule}}</td> -->
-				    <td>{{memoire.titre}}</td>
-				    <!-- <td>{{memoire.email}}</td> -->
-				    <td>{{memoire.datePublication}}</td>
-				  </tr>
-				</tbody>
-			</table>
+		<div class="row">
+			<div class="col s12">
+				<table>
+					<thead>
+					  <tr>
+					      <th>Titre</th>
+					      <th>Date Publication</th>
+					  </tr>
+					</thead>
+					<tbody>
+					  <tr *ngFor="let memoire of memoires" (click)="details(memoire.id)">
+					    <!-- <td>{{memoire.matricule}}</td> -->
+					    <td>{{memoire.titre}}</td>
+					    <!-- <td>{{memoire.email}}</td> -->
+					    <td>{{memoire.datePublication}}</td>
+					  </tr>
+					</tbody>
+				</table>
+			</div>
 		</div>
 	</div>
 </div>

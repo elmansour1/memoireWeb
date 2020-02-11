@@ -1,43 +1,92 @@
 <div class="modal" id="modal">
     <div class="modal-content container">
-      <h4 class="center">Inscription</h4>
+      <h4 class="center" *ngIf="!isSuccessful">Inscription</h4>
     </div>
-    <div class="modal-body container">
-    	<div class="row input-field">
-			<i class="material-icons prefix">plus_one</i>
-			
-			<input type="text"  [(ngModel)]="auteur.matricule" class="validate">
-			<label>Matricule</label>
-		</div>
+    <form   *ngIf="!isSuccessful"
+      name="form"
+      (ngSubmit)="f.form.valid && onSubmit()"
+      #f="ngForm"
+      novalidate >
+    	<div class="modal-body container">
 		<div class="row input-field">
 			<i class="material-icons prefix">account_circle</i>
-			<input type="text"  [(ngModel)]="auteur.nom" class="validate">
-			<label>Nom-Prenom</label>
+			<input type="text"
+		          class="form-control"
+		          name="username"
+		          [(ngModel)]="form.username"
+		          required
+		          minlength="3"
+		          maxlength="20"
+		          #username="ngModel" class="validate">
+			<label>Username</label>
+			<div class="materialert error" *ngIf="f.submitted && username.invalid">
+				<div class="material-icons">error_outline</div>
+			    <div *ngIf="username.errors.required">Username is required</div>
+		          <div *ngIf="username.errors.minlength">
+		            Username must be at least 3 characters
+		          </div>
+		          <div *ngIf="username.errors.maxlength">
+		            Username must be at most 20 characters
+		          </div>
+			</div>
 		</div>
 		<div class="row input-field">
 			<i class="material-icons prefix">mail</i>
-			<input type="email"  [(ngModel)]="auteur.email" class="validate">
+			<input type="email"
+		          class="form-control"
+		          name="email"
+		          [(ngModel)]="form.email"
+		          required
+		          email
+		          #email="ngModel" class="validate">
 			<label>Email</label>
-		</div>
-		<div class="row input-field">
-			<i class="material-icons prefix">call</i>
-			<input type="text"  [(ngModel)]="auteur.telephone" class="validate">
-			<label>Telephone</label>
+			<div class="materialert error" *ngIf="f.submitted && email.invalid">
+				<div class="material-icons">error_outline</div>
+				<div *ngIf="email.errors.required">Email is required</div>
+		          <div *ngIf="email.errors.email">
+		            Email must be a valid email address
+		          </div>
+		        </div>
+			</div>
 		</div>
 		<div class="row input-field">
 			<i class="material-icons prefix">vpn_key</i>
-			<input type="password"  [(ngModel)]="auteur.motDePasse" class="validate">
+			<input type="password"
+		          class="form-control"
+		          name="password"
+		          [(ngModel)]="form.password"
+		          required
+		          minlength="6"
+		          #password="ngModel" class="validate">
 			<label>Password</label>
+			<div class="materialert error" *ngIf="f.submitted && password.invalid">
+				<div class="material-icons">error_outline</div>
+				<div *ngIf="password.errors.required">Password is required</div>
+		        <div *ngIf="password.errors.minlength">
+		            Password must be at least 6 characters
+		        </div>
+			</div>
 		</div>
-    </div>
+    <!-- </div> -->
     <div class="modal-footer">
     	<div class="row">
 	      <div class="col l6 m6 s12 center">
 				<button (click)='closeAll()' class="btn red">Annuler <i class="material-icons right">cancel</i></button>
 			</div>
 			<div class="col l6 m6 s12 center">
-				<button (click)="onSaveAuteur()" class="btn">Envoyer <i class="material-icons right">send</i></button>
+				<button type="submit" class="btn">Register<i class="material-icons right">send</i></button>
 			</div>
     	</div>
+	</div>
+	<div class="materialert warning" *ngIf="f.submitted && isSignUpFailed">
+        Signup failed!<br />{{ errorMessage }}
+      </div>
+    </form>
+    <div class="materialert success" *ngIf="isSuccessful">
+		<div class="material-icons">check</div>
+		Your registration is successful!
+	</div>
+	<div class="col l6 m6 s12 center">
+		<button *ngIf="isSuccessful" (click)='menu()' class="btn red center">Menu <i class="material-icons">menu</i></button>
 	</div>
   </div>

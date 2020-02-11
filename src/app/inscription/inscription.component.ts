@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router  } from '@angular/router';
-import { Auteur } from '../model';
-import { AuteurService } from '../service';
+import { User } from '../model';
+import { AuteurService , AuthService} from '../service';
 
 declare var $:any;
 
@@ -13,9 +13,13 @@ declare var $:any;
 })
 export class InscriptionComponent implements OnInit {
 
-  auteur: Auteur = new Auteur() ;
+  form: any = {};
+  isSuccessful = false;
+  isSignUpFailed = false;
+  errorMessage = '';
+  user: User = new User() ;
 
-  constructor(private router: Router, private auteurService: AuteurService) { }
+  constructor(private router: Router, private auteurService: AuteurService, private authService: AuthService) { }
 
   ngOnInit() {
   // this.auteur = new Auteur();
@@ -32,25 +36,30 @@ export class InscriptionComponent implements OnInit {
     $(".modal").modal('open');
   }
 
-  // close() {
-  //   this.router.navigateByUrl("/auteurs");
-  // }
-
   closeAll(){
     $(".modal").modal('close');
     this.router.navigateByUrl("/");
   }
 
-  onSaveAuteur(){
-  console.log(this.auteur);
-  this.auteurService.add(this.auteur)
-  .subscribe(res=>{
-  	alert("Inscription effectuer avec succes !");
-  this.router.navigateByUrl("/");
-  }, err =>{
-  console.log(err);
-  alert("Connexion au serveur Echoué");
-  });
+
+   onSubmit() {
+    this.authService.register(this.form).subscribe(
+      data => {
+        console.log(data);
+        this.isSuccessful = true;
+        this.isSignUpFailed = false;
+      },
+      err => {
+        this.errorMessage = err.error.message;
+        this.isSignUpFailed = true;
+      }
+    );
+  }
+
+
+  menu(){
+    $(".modal").modal('close');
+    this.router.navigateByUrl("/");
   }
 
 }

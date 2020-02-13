@@ -2,42 +2,96 @@
     <div class="modal-content container">
       <h4 class="center">Ajouter un auteur</h4>
     </div>
-    <div class="modal-body container">
-    	<div class="row input-field">
-			<i class="material-icons prefix">plus_one</i>
-			
-			<input type="text"  [(ngModel)]="auteur.matricule" class="validate">
-			<label>Matricule</label>
-		</div>
-		<div class="row input-field">
-			<i class="material-icons prefix">account_circle</i>
-			<input type="text"  [(ngModel)]="auteur.nom" class="validate">
-			<label>Nom-Prenom</label>
-		</div>
-		<div class="row input-field">
-			<i class="material-icons prefix">mail</i>
-			<input type="email"  [(ngModel)]="auteur.email" class="validate">
-			<label>Email</label>
-		</div>
-		<div class="row input-field">
-			<i class="material-icons prefix">call</i>
-			<input type="text"  [(ngModel)]="auteur.telephone" class="validate">
-			<label>Telephone</label>
-		</div>
-		<div class="row input-field">
-			<i class="material-icons prefix">vpn_key</i>
-			<input type="password"  [(ngModel)]="auteur.motDePasse" class="validate">
-			<label>Password</label>
-		</div>
-    </div>
-    <div class="modal-footer">
-    	<div class="row">
-	      <div class="col l6 m6 s12 center">
-				<button (click)='closeAll()' class="btn red">Annuler <i class="material-icons right">cancel</i></button>
+    <!-- <div class="row center red" *ngIf="flagMessage">
+		{{message}}
+	</div> -->
+	<form name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate >
+	    <div class="modal-body container">
+	    	<div class="row input-field">
+				<i class="material-icons prefix">plus_one</i>
+				<input type="text"  
+					name="matricule" 
+					[(ngModel)]="form.matricule" 
+					required
+					#matricule="ngModel"
+					class="validate">
+				<label>Matricule</label>
+				<div class="materialert error" *ngIf="f.submitted && matricule.invalid">
+				    <div class="material-icons">error_outline</div>
+				    Le matricule ne peux pas être vide !
+				</div>
 			</div>
-			<div class="col l6 m6 s12 center">
-				<button (click)="onSaveAuteur()" class="btn">Envoyer <i class="material-icons right">send</i></button>
+			<div class="row input-field">
+				<i class="material-icons prefix">account_circle</i>
+				<input type="text" 
+					name="nom" 
+					[(ngModel)]="form.nom" 
+					class="validate"
+					required
+					#nom="ngModel">
+				<label>Nom-Prenom</label>
+				<div class="materialert error" *ngIf="f.submitted && nom.invalid">
+				    <div class="material-icons">error_outline</div>
+				    Le champs Nom-Prenom ne peux pas être vide !
+				</div>
 			</div>
-    	</div>
-	</div>
+			<div class="row input-field">
+				<i class="material-icons prefix">mail</i>
+				<input type="email"  
+					name="email"
+					[(ngModel)]="form.email" 
+					#email="ngModel"
+					required
+					class="validate" >
+				<label>Email</label>
+				<div class="materialert error" *ngIf="f.submitted && email.invalid">
+				    <div class="material-icons">error_outline</div>
+				    Le champs Email ne peux pas être vide !
+				</div>
+			</div>
+			<div class="row input-field">
+				<i class="material-icons prefix">call</i>
+				<input type="tel"  
+					name="telephone" 
+					[(ngModel)]="form.telephone"
+					#telephone="ngModel" 
+					class="validate" 
+					minlength="9"
+					placeholder="697 657 678" 
+					required>
+				<label>Telephone</label>
+				<div class="materialert error" *ngIf="f.submitted && telephone.invalid">
+				    <div class="material-icons">error_outline</div>
+				    Le champs Téléphone ne peux pas être vide !
+				</div>
+			</div>
+			<div class="row input-field">
+				<i class="material-icons prefix">vpn_key</i>
+				<input type="password"  
+					name="motDePasse" 
+					#motDePasse="ngModel" 
+					[(ngModel)]="form.motDePasse" 
+					class="validate" 
+					minlength="6" 
+					required>
+				<label>Password</label>
+				<div class="materialert error" *ngIf="f.submitted && motDePasse.invalid">
+			    <div *ngIf="motDePasse.errors.required">Le champs mot de passe ne peux pas être vide !</div>
+		        <div *ngIf="motDePasse.errors.minlength">
+		            Le mot de passe doit ne doit pas être inférieur à 6 caractères
+		        </div>
+			</div>
+			</div>
+	    </div>
+	    <div class="modal-footer">
+	    	<div class="row">
+		      <div class="col l6 m6 s12 center">
+					<button (click)='closeAll()' class="btn red">Annuler <i class="material-icons right">cancel</i></button>
+				</div>
+				<div class="col l6 m6 s12 center">
+					<button type="submit" class="btn">Envoyer <i class="material-icons right">send</i></button>
+				</div>
+	    	</div>
+		</div>
+	</form>
   </div>

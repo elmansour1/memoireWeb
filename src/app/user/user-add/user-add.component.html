@@ -1,36 +1,144 @@
-<div class="modal">
+<div class="modal" id="modal">
     <div class="modal-content container">
-      <h4 class="center">Ajouter un utilisateur</h4>
+      <h4 class="center" *ngIf="!isSuccessful">Inscription</h4>
     </div>
-    <div class="modal-body container">
+    <form   *ngIf="!isSuccessful"
+      name="form"
+      (ngSubmit)="f.form.valid && onSubmit()"
+      #f="ngForm"
+      novalidate >
+    	<div class="modal-body container">
 		<div class="row input-field">
 			<i class="material-icons prefix">account_circle</i>
-			<input type="text"  [(ngModel)]="user.login" class="validate">
-			<label>Login</label>
+			<input type="text"
+		          class="form-control"
+		          name="username"
+		          [(ngModel)]="form.username"
+		          required
+		          minlength="3"
+		          maxlength="20"
+		          #username="ngModel" class="validate">
+			<label>Username</label>
+			<div class="materialert error" *ngIf="f.submitted && username.invalid">
+				<div class="material-icons">error_outline</div>
+			    <div *ngIf="username.errors.required">Username is required</div>
+		          <div *ngIf="username.errors.minlength">
+		            Username must be at least 3 characters
+		          </div>
+		          <div *ngIf="username.errors.maxlength">
+		            Username must be at most 20 characters
+		          </div>
+			</div>
 		</div>
+		<div class="row input-field">
+			<i class="material-icons prefix">mail</i>
+			<input type="email"
+		          class="form-control"
+		          name="email"
+		          [(ngModel)]="form.email"
+		          required
+		          email
+		          #email="ngModel" class="validate">
+			<label>Email</label>
+			<div class="materialert error" *ngIf="f.submitted && email.invalid">
+				<div class="material-icons">error_outline</div>
+				<div *ngIf="email.errors.required">Email is required</div>
+		          <div *ngIf="email.errors.email">
+		            Email must be a valid email address
+		          </div>
+		        </div>
+			</div>
 		<div class="row input-field">
 			<i class="material-icons prefix">vpn_key</i>
-			<input type="password"  [(ngModel)]="user.password" class="validate">
+			<input type="password"
+		          class="form-control"
+		          name="password"
+		          [(ngModel)]="form.password"
+		          required
+		          minlength="6"
+		          #password="ngModel" class="validate">
 			<label>Password</label>
+			<div class="materialert error" *ngIf="f.submitted && password.invalid">
+				<div class="material-icons">error_outline</div>
+				<div *ngIf="password.errors.required">Password is required</div>
+		        <div *ngIf="password.errors.minlength">
+		            Password must be at least 6 characters
+		        </div>
+			</div>
 		</div>
 		<div class="row input-field">
-				
-				<select id="role" class="browser-default" name="role"  >
-				    <option value="" disabled selected>Choisir le role</option>
-				    <option *ngFor="let i=index,let r of roles" [value]="r.id" (click)="updateRole(r)">
-				    	{{r.rolename}}
-				    </option><label for="role">Role</label>
-			  	</select>
-			</div>
-    </div>
+			    <select [(ngModel)]="form.roles"  name="roles" multiple>
+			      <option value="" disabled selected>Choisir les Roles</option>
+			       <option *ngFor="let i=index,let role of roles" [value]="role.id" (click)="updateRole(role)">
+				    	{{role.name}}
+				    </option>
+			    </select>
+			    <label>Choisir les Roles</label>
+			 </div>
+		</div>
+    <!-- </div> -->
     <div class="modal-footer">
     	<div class="row">
 	      <div class="col l6 m6 s12 center">
 				<button (click)='closeAll()' class="btn red">Annuler <i class="material-icons right">cancel</i></button>
 			</div>
 			<div class="col l6 m6 s12 center">
-				<button (click)="onSaveUser()" class="btn">Envoyer <i class="material-icons right">send</i></button>
+				<button type="submit" class="btn">Register<i class="material-icons right">send</i></button>
 			</div>
     	</div>
 	</div>
+	<div class="materialert warning" *ngIf="f.submitted && isSignUpFailed">
+        Signup failed!<br />{{ errorMessage }}
+      </div>
+    </form>
+    <div class="materialert success" *ngIf="isSuccessful">
+		<div class="material-icons">check</div>
+		Your registration is successful!
+	</div>
+	<div class="col l6 m6 s12 center">
+		<button *ngIf="isSuccessful" (click)='menu()' class="btn red center">Menu <i class="material-icons">menu</i></button>
+	</div>
   </div>
+
+
+
+<!-- <div class="modal">
+    <div class="modal-content container">
+      <h4 class="center">Ajouter un utilisateur</h4>
+    </div>
+    <form name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate >
+	    <div class="modal-body container">
+			<div class="row input-field">
+				<i class="material-icons prefix">account_circle</i>
+				<input type="text"  [(ngModel)]="user.username" class="validate">
+				<label>Username</label>
+			</div>
+			<div class="row input-field">
+				<i class="material-icons prefix">vpn_key</i>
+				<input type="password"  [(ngModel)]="user.password" class="validate">
+				<label>Password</label>
+			</div>
+			<div class="row input-field">
+					
+					<select id="role" class="browser-default" name="role"  >
+					    <option value="" disabled selected>Choisir les roles</option>
+					    <option *ngFor="let i=index,let r of roles" [value]="r.id" (click)="updateRole(r)">
+					    	{{r.name}}
+					    </option>
+					    <label for="role">Roles</label>
+				  	</select>
+				</div>
+	    </div>
+	    <div class="modal-footer">
+	    	<div class="row">
+		      <div class="col l6 m6 s12 center">
+					<button (click)='closeAll()' class="btn red">Annuler <i class="material-icons right">cancel</i></button>
+				</div>
+				<div class="col l6 m6 s12 center">
+					<button (click)="onSaveUser()" class="btn">Envoyer <i class="material-icons right">send</i></button>
+				</div>
+	    	</div>
+		</div>
+	<form>
+  </div>
+ -->

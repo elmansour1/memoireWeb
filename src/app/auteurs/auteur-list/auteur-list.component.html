@@ -1,24 +1,19 @@
 <div class="container">
 	<div id="">
 		<div class="row">
-				<!-- <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a> -->
-				
-				<nav class="col offset-s1 s9 grey lighten-4">
-					
-					<form #f="ngForm" (ngSubmit)="onSearch(f.value)">
-					<input
-						id="search" 
-						name="mot"
-						[(ngModel)]="mot"
-						type="text" 
-						placeholder="Recherche" 
-						
-						/>
-						
-						<!-- <button class="material-icons" type="submit">search</button> -->
-				</form>
-				
-			</nav>
+			<div class="container">
+				<div class="row">
+					<div class="col s12">
+						<div class="row">
+							<div class="input-field col s12">
+								<i class="material-icons prefix">search</i>
+								<input type="text" id="autocomplete-input" class="autocomplete">
+								<label for="autocomplete-input">search</label>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div>
 		<div class="row">
 			<div class="col l4 s12">

@@ -2,7 +2,7 @@ import { Role } from '../model';
 
 export class User{
 	public id?:number;
-	public login:string;
+	public username:string;
 	public password: string;
-	public role: Role;
+	public roles: Role[];
 }

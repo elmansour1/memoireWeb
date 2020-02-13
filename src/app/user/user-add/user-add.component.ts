@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router  } from '@angular/router';
 import { User, Role } from '../../model';
-import { UserService , RoleService} from '../../service';
+import { UserService , RoleService, AuthService} from '../../service';
 
 
 declare var $: any;
@@ -12,22 +12,32 @@ declare var $: any;
   styleUrls: ['./user-add.component.css']
 })
 export class UserAddComponent implements OnInit {
-
+  form: any={};
 	user : User = new User();
   roles: Array<Role>;
-  roleSelected: Role;
+  roleName: Role = new Role();
+  roleSelected: Role[]=[];
   public id:number;
+  selected: Role[]=[];
 
   constructor(	 private router: Router, 
   	             private userService: UserService,
-                 private roleService: RoleService
+                 private roleService: RoleService,
+                 private authService: AuthService
     ) { }
 
   ngOnInit() {
   // this.auteur = new Auteur();
-  this.roleService.getAll()
-      .then(data=> this.roles = data);
-      console.log(this.roles);
+
+  // this.roleService.getAll()
+  //     .then(data=> this.roles = data);
+  //     console.log(this.roles);
+     this.roleService.getAll().then(data => {
+            this.roles = data;
+            setTimeout(function () {
+                $('select').formSelect();
+            }, 200);
+        });
   $('.modal').modal({
         dismissible: true, // Modal can be dismissed by clicking outside of the modal
         opacity: .7, // Opacity of modal background
@@ -35,11 +45,16 @@ export class UserAddComponent implements OnInit {
         outDuration: 200, // Transition out duration
         startingTop: '10%', // Starting top style attribute
         endingTop: '10%', // Ending top style attribute
-        complete:function(){ },
-        onCloseEnd:function(){
-          close()}
+        // complete:function(){ },
+        // onCloseEnd:function(){
+        //   close()}
     });
     $(".modal").modal('open');
+
+  //    $(document).ready(function(){
+  //   $('select').formSelect();
+  // });
+
   }
 
   close() {
@@ -51,17 +66,17 @@ export class UserAddComponent implements OnInit {
     this.router.navigate(['users']);
   }
 
-  onSaveUser(){
+  onSubmit(){
       console.log("BONJOUR");
-      console.log(this.user);
+      console.log(this.form);
    let tmp:User={
-    login:this.user.login,
-    password:this.user.password,
-    role:this.roleSelected
+    username:this.form.username,
+    password:this.form.password,
+    roles:this.roleSelected
   }
   console.log("BONSOIR")
   console.log(tmp)
-    this.userService.add(tmp).subscribe(res=>{
+    this.authService.register(tmp).subscribe(res=>{
       this.router.navigate(['/users']);
       },
       err=>{
@@ -72,7 +87,7 @@ export class UserAddComponent implements OnInit {
   
     }
 
-   updateRole(args){
-      this.roleSelected=args;
+   updateRole(args: Role){
+      this.roleSelected.push(args);
     }
 }

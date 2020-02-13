@@ -15,7 +15,7 @@ export class UserUpdateComponent implements OnInit {
 
   user : User = new User();
   roles: Array<Role>;
-  roleSelected: Role;
+  roleSelected: Role[];
   public id:number;
 
   constructor(	 private router: Router, 
@@ -62,14 +62,14 @@ export class UserUpdateComponent implements OnInit {
 	      console.log(this.user);
 	   this.user={
 		id: this.user.id,
-	    login:this.user.login,
+	    username:this.user.username,
 	    password:this.user.password,
-	    role:this.roleSelected
+	    roles:this.roleSelected
 	  }
 	  console.log("BONSOIR")
 	  // console.log(tmp)
 	    if (confirm("Êtes vous sure de vouloir modifier cet élément ?")) {
-	  if ((this.user.login==undefined)||(this.user.role==undefined)) {
+	  if ((this.user.username==undefined)||(this.user.roles==undefined)) {
 	    
 	  } else {
 	    this.userService.update(this.user).subscribe(res=>{

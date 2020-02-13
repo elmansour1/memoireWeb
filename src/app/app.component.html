@@ -4,17 +4,17 @@
       <a id="logo-container" [routerLink]="['/']" class="brand-logo black-text">ENSPM</a>
 	<!-- <img class="col l2 s12" src="assets/images/logo2.png" alt="logo"> *ngIf="showVisitorBoard"-->
       <ul class="right hide-on-med-and-down black-text" >
-        <li class="menuEcriture" *ngIf="showUserBoard"><a [routerLink]="['/']" class="black-text">Memoires</a></li>
-        <li   class="menuEcriture" *ngIf="showAdminBoard"><a [routerLink]="['/auteurs']" class="black-text">Auteurs</a></li>
-        <li  class="menuEcriture" *ngIf="showAdminBoard"><a [routerLink]="['/enseignants']" class="black-text">Encadreurs</a></li>
-        <li   class="menuEcriture" *ngIf="showAdminBoard"><a [routerLink]="['/parcours']" class="black-text">Parcours</a></li>
-        <li   class="menuEcriture" *ngIf="showAdminBoard"><a [routerLink]="['/departements']" class="black-text">Departements</a></li>
-        <li   class="menuEcriture" *ngIf="showAdminBoard"><a [routerLink]="['/specialisations']" class="black-text">Options</a></li>
+        <li class="menuEcriture" *ngIf="showVisitorBoard"><a [routerLink]="['/']" class="black-text">Memoires</a></li>
+        <li   class="menuEcriture" *ngIf="showUserBoard"><a [routerLink]="['/auteurs']" class="black-text">Auteurs</a></li>
+        <li  class="menuEcriture" *ngIf="showUserBoard"><a [routerLink]="['/enseignants']" class="black-text">Encadreurs</a></li>
+        <li   class="menuEcriture" *ngIf="showUserBoard"><a [routerLink]="['/parcours']" class="black-text">Parcours</a></li>
+        <li   class="menuEcriture" *ngIf="showUserBoard"><a [routerLink]="['/departements']" class="black-text">Departements</a></li>
+        <li   class="menuEcriture" *ngIf="showUserBoard"><a [routerLink]="['/specialisations']" class="black-text">Options</a></li>
         <li   class="menuEcriture" *ngIf="showAdminBoard"><a [routerLink]="['/users']" class="black-text">Utilisateurs</a></li>
         <li   class="menuEcriture" *ngIf="showAdminBoard"><a [routerLink]="['/roles']" class="black-text">Roles</a></li>
         <li class="menuEcriture" *ngIf="!isLoggedIn"><a [routerLink]="['/inscription']" class="black-text">Inscription</a></li>
         <li  class="menuEcriture" *ngIf="!isLoggedIn"><a [routerLink]="['/login']" class="black-text">Sign in</a></li>
-        <li *ngIf="isLoggedIn"><a>{{ username }}</a></li>
+        <li *ngIf="isLoggedIn"><a>{{ username }}</a>
       </ul>
       <a href="#" data-target="nav-mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
     </div>
@@ -37,19 +37,6 @@
   <li><a href (click)="logout()">Deconnexion</a></li>
 </ul>
 <a href data-target="slide-out" class="sidenav-trigger" *ngIf="isLoggedIn"><i class="material-icons">menu</i></a>
-<div class="row">
-	<form >
-		<input
-			id="search" 
-			[(ngModel)]="searchInput" 
-			[ngModelOptions]="{standalone: true}" 
-			type="text" 
-			placeholder="Recherche" 
-			class="input-field col offset-s4 s4"
-			(input)="emettre()"/>
-		<button class="material-icons" (click)="emettre">search</button>
-	</form>
-</div>
 <div>
 	<router-outlet></router-outlet>
 </div>

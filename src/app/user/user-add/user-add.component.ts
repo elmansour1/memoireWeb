@@ -69,11 +69,22 @@ export class UserAddComponent implements OnInit {
   onSubmit(){
       console.log("BONJOUR");
       console.log(this.form);
+      
    let tmp:User={
     username:this.form.username,
+      email:this.form.email,
     password:this.form.password,
-    roles:this.roleSelected
-  }
+    roles:[]
+  };
+  this.roleSelected=[];
+      let t:any=$('select').formSelect('getSelectedValues');
+      t.forEach(element=>{
+        let tm=this.roles.filter(r=>r.id==element);
+        this.roleSelected.push(tm);
+        tmp.roles.push(tm[0]);
+      });
+      console.log("ROLES SELECTED");
+      console.log(this.roleSelected);
   console.log("BONSOIR")
   console.log(tmp)
     this.authService.register(tmp).subscribe(res=>{

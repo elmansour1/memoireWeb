@@ -37,7 +37,6 @@
 		          name="email"
 		          [(ngModel)]="form.email"
 		          required
-		          email
 		          #email="ngModel" class="validate">
 			<label>Email</label>
 			<div class="materialert error" *ngIf="f.submitted && email.invalid">
@@ -67,7 +66,7 @@
 			</div>
 		</div>
 		<div class="row input-field">
-			    <select [(ngModel)]="form.roles"  name="roles" multiple>
+			    <select  name="roles" multiple>
 			      <option value="" disabled selected>Choisir les Roles</option>
 			       <option *ngFor="let i=index,let role of roles" [value]="role.id" (click)="updateRole(role)">
 				    	{{role.name}}

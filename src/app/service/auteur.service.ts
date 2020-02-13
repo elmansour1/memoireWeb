@@ -40,4 +40,7 @@ export class AuteurService {
 	public del(id){
 		return this.http.delete(this.url+"/auteurs/"+id);
 	}
+	public chercher(data){
+		return this.http.get(this.url+"/auteurs/search/recherche?nom"+"="+data);
+	}
 }

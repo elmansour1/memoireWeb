@@ -18,7 +18,7 @@ export class AuteurListComponent implements OnInit {
 
   constructor(private auteurService: AuteurService, private router: Router, private http: HttpClient) { }
 
-  public motCle: any;
+  public chaine: any;
 
   ngOnInit() {
   	this.auteurService.getAll()
@@ -29,10 +29,14 @@ export class AuteurListComponent implements OnInit {
     this.router.navigate(['/auteurs/edit/'+id]);
   }
   
-   onSearch(motCle){
-  console.log(this.motCle);
-       //this.http.get(this.url+"/auteurs"+dataForm.motCle); 
-       
-  }
+  onSearch(motCle){
+    // console.log(motCle);
+       this.auteurService.chercher(motCle.mot)
+       .subscribe(data =>{
+         console.log(data);
+         this.chaine=data;
+     })
+      
+ }
 
 }

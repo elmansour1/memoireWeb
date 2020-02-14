@@ -26,9 +26,12 @@ export class UserUpdateComponent implements OnInit {
 
   ngOnInit() {
   // this.auteur = new Auteur();
-  this.roleService.getAll()
-      .then(data=> this.roles = data);
-      console.log(this.roles);
+  this.roleService.getAll().then(data => {
+            this.roles = data;
+            setTimeout(function () {
+                $('select').formSelect();
+            }, 200);
+        });
   $('.modal').modal({
         dismissible: true, // Modal can be dismissed by clicking outside of the modal
         opacity: .7, // Opacity of modal background
@@ -36,9 +39,9 @@ export class UserUpdateComponent implements OnInit {
         outDuration: 200, // Transition out duration
         startingTop: '10%', // Starting top style attribute
         endingTop: '10%', // Ending top style attribute
-        complete:function(){ },
-        onCloseEnd:function(){
-          close()}
+        // complete:function(){ },
+        // onCloseEnd:function(){
+        //   close()}
     });
     this.route.params.subscribe(params =>{
       this.id = params['id'];
@@ -61,8 +64,9 @@ export class UserUpdateComponent implements OnInit {
 	      console.log("BONJOUR");
 	      console.log(this.user);
 	   this.user={
-		id: this.user.id,
+		  id: this.user.id,
 	    username:this.user.username,
+      email:this.user.email,
 	    password:this.user.password,
 	    roles:this.roleSelected
 	  }

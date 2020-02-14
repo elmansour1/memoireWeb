@@ -32,7 +32,10 @@ export class MemoireService {
 	}
 
 	public add(data){
-		return this.http.post(this.url+"/memoires", data);
+		const headers = new HttpHeaders()
+		            .set("ContentType", "application/json");
+
+		return this.http.post(this.url+"/memoires", data, headers);
 	}
 
 	public update(data){
@@ -43,13 +46,13 @@ export class MemoireService {
 		return this.http.delete(this.url+"/memoires/"+id);
 	}
 
-	public uploadFile(file: File): Observable<HttpEvent<{}>>{
+	public uploadFile(file): Observable<HttpEvent<{}>>{
 		let formdata: FormData = new FormData();
     		formdata.append('file', file);
 
-    		const req = new HttpRequest('POST', this.url+'/uploadFile/', formdata, {
+    		const req = new HttpRequest('POST','http://localhost:8080/api/uploadFile/', formdata, {
 		      reportProgress: true,
-		      responseType: 'text'
+		      responseType: 'json'
 		    });
 
     	return this.http.request(req);

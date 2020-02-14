@@ -46,15 +46,8 @@ export class UserAddComponent implements OnInit {
         startingTop: '10%', // Starting top style attribute
         endingTop: '10%', // Ending top style attribute
         // complete:function(){ },
-        // onCloseEnd:function(){
-        //   close()}
     });
     $(".modal").modal('open');
-
-  //    $(document).ready(function(){
-  //   $('select').formSelect();
-  // });
-
   }
 
   close() {
@@ -72,7 +65,7 @@ export class UserAddComponent implements OnInit {
       
    let tmp:User={
     username:this.form.username,
-      email:this.form.email,
+    email:this.form.email,
     password:this.form.password,
     roles:[]
   };
@@ -80,13 +73,15 @@ export class UserAddComponent implements OnInit {
       let t:any=$('select').formSelect('getSelectedValues');
       t.forEach(element=>{
         let tm=this.roles.filter(r=>r.id==element);
-        this.roleSelected.push(tm);
+        // this.roleSelected.push(tm);
         tmp.roles.push(tm[0]);
       });
+    
       console.log("ROLES SELECTED");
       console.log(this.roleSelected);
-  console.log("BONSOIR")
-  console.log(tmp)
+      console.log("BONSOIR")
+      console.log(tmp)
+    
     this.authService.register(tmp).subscribe(res=>{
       this.router.navigate(['/users']);
       },

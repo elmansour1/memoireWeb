@@ -40,7 +40,7 @@ export class AppComponent implements OnInit{
 
       this.showAdminBoard = this.roles.includes('ROLE_ADMIN');
       this.showUserBoard = this.roles.includes('ROLE_USER');
-      // this.showVisitorBoard = this.roles.includes('ROLE_VISITOR');
+      this.showVisitorBoard = this.roles.includes('ROLE_VISITOR');
 
       this.username = user.username;
     }

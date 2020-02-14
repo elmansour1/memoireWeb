@@ -10,8 +10,8 @@
 		</div>
 		<div class="row">
 			
-			<div class="input-field col s6">Login:
-				<input type="text"  [(ngModel)]="user.login">
+			<div class="input-field col s6">Username:
+				<input type="text"  [(ngModel)]="user.username">
 				<!-- <label>Matricule</label> -->
 			</div>
 			<div class="input-field col s6">Mot de passe:
@@ -19,17 +19,18 @@
 				<!-- <label>Nom-Prenom</label> -->
 			</div>
 		</div>
-		<div class="row">
-				<label for="role">Role</label>
-				<select id="role" class="browser-default" name="role"  >
-				    <option value="" disabled selected>Choisir un Role</option>
-				    <option *ngFor="let i=index,let role of roles" [value]="role.id" (click)="updateRole(role)">
-				    	{{role.rolename}}
+		<div class="row input-field">
+			    <select  name="roles" multiple>
+			      <option value="" disabled selected></option>
+			       <option *ngFor="let i=index,let role of roles" [value]="role.id" (click)="updateRole(role)">
+				    	{{role.name}}
 				    </option>
-			  	</select>
-			</div>
+			    </select>
+			    <label>Choisir les Roles</label>
+			 </div>
 		</div>
-    </div>
+		</div>
+    <!-- </div> -->
 
     <div class="modal-footer">
     	<div class="row">

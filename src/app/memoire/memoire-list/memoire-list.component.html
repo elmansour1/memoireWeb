@@ -25,19 +25,28 @@
 		</div>
 		<div class="row">
 			<div class="col s12">
-				<table>
+				<table class="responsive-table striped">
 					<thead>
 					  <tr>
 					      <th>Titre</th>
 					      <th>Date Publication</th>
+					      <th>Détailler</th>
+					      <!-- <th>Telecharger</th> -->
 					  </tr>
 					</thead>
 					<tbody>
-					  <tr *ngFor="let memoire of memoires" (click)="details(memoire.id)">
+					  <tr *ngFor="let memoire of memoires">
 					    <!-- <td>{{memoire.matricule}}</td> -->
 					    <td>{{memoire.titre}}</td>
 					    <!-- <td>{{memoire.email}}</td> -->
 					    <td>{{memoire.datePublication}}</td>
+					    <td>
+							<div>
+								<button class="waves-effect waves-teal btn-flat" (click)="details(memoire.id)"><i class="material-icons large">zoom_in</i></button>
+				
+						</div>
+						</td>
+					    <!-- <td>{{splitter(memoire)}}<button class="col offset-s8-s8 btn-floating btn-large waves-effect waves-light teal darken-2 btn modal-trigger" (click)="getPDF(memoire)"> <i class="material-icons">add</i> </button></td> -->
 					  </tr>
 					</tbody>
 				</table>

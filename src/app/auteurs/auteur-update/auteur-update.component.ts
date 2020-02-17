@@ -28,10 +28,10 @@ export class AuteurUpdateComponent implements OnInit {
         outDuration: 200, // Transition out duration
         startingTop: '10%', // Starting top style attribute
         endingTop: '10%', // Ending top style attribute
-        complete: function () { 
-          // $('.datepicker').datepicker();
-        },
-        onCloseEnd:function(){window.history.go(-1)}
+        // complete: function () { 
+        //   // $('.datepicker').datepicker();
+        // },
+        // onCloseEnd:function(){window.history.go(-1)}
           });
     this.route.params.subscribe(params =>{
       this.id = params['id'];
@@ -54,8 +54,8 @@ export class AuteurUpdateComponent implements OnInit {
     outDuration: 200, // Transition out duration
     startingTop: '10%', // Starting top style attribute
     endingTop: '10%', // Ending top style attribute
-    complete:function(){ },
-    onCloseEnd:function(){window.history.go(-1)}
+    // complete:function(){ },
+    // onCloseEnd:function(){window.history.go(-1)}
 });
     $(".modal").modal('close');
     this.router.navigate(['auteurs']);
@@ -67,8 +67,9 @@ export class AuteurUpdateComponent implements OnInit {
     this.auteurService.update(this.auteur)
       .subscribe(
         data  => {
-          $(".modal").modal('close');
               this.router.navigate(['/auteurs']);
+              
+              alert("L'auteur a été bien modifier");
         },
         error => {
           alert("Erreur de connexion au serveur");

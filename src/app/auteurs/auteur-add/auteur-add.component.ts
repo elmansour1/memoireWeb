@@ -59,46 +59,14 @@ auteur: Auteur = new Auteur() ;
     this.auteurService.add(this.form)
         .subscribe(
           res=>{
+              alert("L'Auteur a été bien ajouter !");
                   $(".modal").modal('close');
                   this.router.navigateByUrl("/auteurs");
         }, err =>{
+          alert("Erreur de connexion au serveur");
           console.log(err);
         });
       // }
   }
-
-  // private verifier(){
-  //   let flag = true;
-  //   if (this.auteur.matricule == "" || this.auteur.matricule == null) {
-  //     this.message = "Les champs suivants sont incorrects : matricule";
-  //     flag = false;
-  //   }
-
-  //   if (this.auteur.nom == "" || this.auteur.nom == null) {
-  //     this.message = (flag)? "Les champs suivants sont incorrects : Nom-Prenom" : this.message + ", Nom-Prenom";
-  //     flag = true
-  //   }
-
-  //   if (this.auteur.email == "" || this.auteur.email == null) {
-  //     this.message = (flag)? "Les champs suivants sont incorrects : Email" : this.message + ", Email";
-  //     flag = true
-  //   }
-
-  //   if (this.auteur.telephone == "" || this.auteur.telephone == null) {
-  //     this.message = (flag)? "Les champs suivants sont incorrects : téléphone" : this.message + ", téléphone";
-  //     flag = true
-  //   }
-
-  //   if (this.auteur.motDePasse == "" || this.auteur.motDePasse == null) {
-  //     this.message = (flag)? "Les champs suivants sont incorrects : mot de passe" : this.message + ", mot de passe";
-  //     flag = true;
-  //   }
-
-  //   console.log(this.flagMessage);
-  //   this.flagMessage = !flag;
-  //   console.log(this.flagMessage);
-  //   console.log(flag);
-  //   return flag;
-  // }
 
 }

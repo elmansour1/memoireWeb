@@ -1,1 +1,78 @@
-<p>memoire-update works!</p>
+<div class="modal">
+    <div class="modal-content">
+      <h4 class="center">Modifier un mémoire</h4>
+	</div>
+	<div class="container">
+
+			<form enctype="multipart/form-data" (ngSubmit)="onSaveMemoire()" >
+					<div class="modal-body">
+						<div class="row input-field">
+							<i class="material-icons prefix tiny">border_color</i>
+							<input type="text" name="code" [(ngModel)]="memoire.titre">
+							<label>Titre</label>
+						</div>
+						<div class="row input-field">
+							<!-- <label>Date Publication</label> -->
+							<i class="material-icons prefix tiny">date_range</i>
+							<input type="date" name="anneesSoutenance" [(ngModel)]="memoire.anneesSoutenance">
+							<label>Date de soutenance</label>
+						</div>
+						<div class="row input-field">
+							<i class="material-icons prefix tiny">vpn_key</i>
+							<input type="text" name="motsCles" [(ngModel)]="memoire.motsCles">
+							<label>Mots clés</label>
+						</div>
+						<div class="row input-field">
+							<i class="material-icons prefix tiny">short_text</i>
+							<textarea class="materialize-textarea" name="resume" [(ngModel)]="memoire.resume" data-length="500" name="resume"></textarea>
+							<label>Resumé</label>
+						</div>
+						<div class="row input-field">
+							<i class="material-icons prefix tiny">text_format</i>
+							<textarea class="materialize-textarea" name="abstrat" [(ngModel)]="memoire.abstrat" data-length="500" name="abstrat"></textarea>
+							<label>Abstract</label>
+						</div>
+						<div class="row">
+								<div class="input-field col s12">
+							<select multiple name="auteurs" id="auteurs">
+							  <option *ngFor="let i=index, let auteur of auteurs" [value]="auteur.id" (click)="updateAuteurs(auteur)" >{{auteur.nom}}</option>
+							</select>
+							<label>Sélectionnez les auteurs</label>
+						  </div>
+						</div>
+						  <div class="row">
+							<div class="input-field col s12">
+						<select multiple name="encadreurs" id="encadreurs">
+						  <option *ngFor="let i=index, let encadreur of enseignants" [value]="encadreur.id" >{{encadreur.nom}}</option>
+						</select>
+						<label>Sélectionnez les encadreurs</label>
+					  </div>
+						</div>
+						<div class="row">
+						<div class="file-field input-field">
+							<div class="btn">
+								<span><i class="material-icons">attach_file</i></span>
+								<input type="file" [(ngModel)]="document"  name="document" id="fileUpload" (change)="onSelectedFile($event)">
+							</div>
+							<div class="file-path-wrapper">
+								<input class="file-path validate" type="text" placeholder="Ajouter votre fichier pdf" >
+							</div>
+						</div>
+					</div>
+					</div>
+					<div class="modal-footer">
+						<div class="row">
+						  <div class="col l6 m6 s12 center">
+								<button (click)='closeAll()' class="btn red">Annuler <i class="material-icons right">cancel</i></button>
+							</div>
+							<div class="col l6 m6 s12 center">
+								<button  type="submit" class="btn">Envoyer <i class="material-icons right">send</i></button>
+							</div>
+						</div>
+					</div>
+				</form>
+	</div>
+    	
+  </div>
+
+

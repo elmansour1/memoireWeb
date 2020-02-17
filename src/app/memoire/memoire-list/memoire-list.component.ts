@@ -13,6 +13,11 @@ declare var $:any;
 })
 export class MemoireListComponent implements OnInit {
 
+  nom=[];
+  fileSimple;
+  fileSwap;
+  idMemoire;
+  selectedFiles=null;
 private roles: string[];
   isLoggedIn = false;
   showAdminBoard = false;
@@ -47,7 +52,45 @@ private roles: string[];
   }
 
   public details(id){
-    this.router.navigate(['/memoires/edit/'+id]);
+    this.router.navigate(['/edit/'+id]);
   }
+
+
+
+public getPDF(id){
+      console.log(id);
+      let nom=[];
+      nom  = id.document;
+      var file = nom.split("/");
+      var t = file[2];
+      console.log(t);
+      this.memoireService.downloadFile(this.fileSwap)
+      .subscribe(
+        data => {
+
+          console.log("Binjour")
+          console.log(data);
+// if you want to open PDF in new tab
+          // window.open(fileURL); 
+          // var a         = document.createElement('a');
+          // a.href        = fileURL; 
+          // a.target      = '_blank';
+          // a.download    = 'bill.pdf';
+          // document.body.appendChild(a);
+          // a.click();
+        },
+        (error) => {
+          console.log('getPDF error: ',error);
+        }
+      );
+    }
+
+    public splitter(vare): string{
+        this.nom = vare.document;
+      this.fileSimple = this.nom.split("/");
+      this.fileSwap = this.fileSimple[2];
+      return this.fileSwap;
+    }
+
 
 }

@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpEvent, HttpHeaders , HttpRequest} from '@angular/common/http';
+import {Http, ResponseContentType} from '@angular/http';
 import { Observable } from 'rxjs';
 
 
@@ -57,4 +58,18 @@ export class MemoireService {
 
     	return this.http.request(req);
 	}
+
+	public downloadFile(file){
+		// let formdata: FormData = new FormData();
+		// formdata.append('file',file);
+		const headers = new HttpHeaders()
+		            .set("ContentType", "application/json");
+		return this.http.get(this.url +'/memoire/downloadFile/'+file,headers); 	
+	}
+
+	
+
+	// downloadFile(): Observable<any>{
+	// 	return this.http.get('http://localhost:8080/api/memoire/downloadFile', {responseType: ResponseContentType.Blob});
+ //  }
 }

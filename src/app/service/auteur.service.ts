@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { Auteur } from '../model';
 
 
@@ -19,6 +20,14 @@ export class AuteurService {
     	.then((response) => {
           return response as Array<Auteur>;
       	});
+	}
+
+	public getAllByObservable(): Observable<Auteur[]>{
+		return this.http.get(this.url+"/auteurs")
+			.pipe(
+				map(data => {
+					return data as Auteur[];
+				}))
 	}
 
 	public get(id):Promise<Auteur>{

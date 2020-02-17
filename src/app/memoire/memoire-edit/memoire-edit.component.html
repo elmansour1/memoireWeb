@@ -1,1 +1,38 @@
-<p>memoire-edit works!</p>
+<div class="row modal">
+	<div class="container">
+		<div class="row right">
+			<!--div class="col l6 m6 s12 ">
+				<button (click)='closeAll()' class="btn #ffeb3b blue"><i class="material-icons">close</i></button>
+			</div-->
+		</div>
+		<div class="row center">
+			<h5>Détails sur le memoire ayant le titre: {{memoire.titre}}</h5>
+		</div>
+		<div class="row">
+			<div class="col l6 m6 s12">
+				<b>Date de soutenance : </b> {{memoire.anneesSoutenance}}
+			</div>
+			<div class="col l6 m6 s12">
+				<b>Resume : </b> {{memoire.resume}}
+			</div>
+		</div>
+		<div class="row">
+			<div class="col l6 m6 s12">
+				<b>Abstract : </b> {{memoire.abstrat}}
+			</div>
+			<div class="col l6 m6 s12">
+				<b>La date de publication : </b> {{memoire.datePublication}}
+			</div>
+		</div>	
+		<div class="row">
+		<div class="col l6 m6 s12 center">
+			<button (click)="onEdit()" class="btn">Modifier <i class="material-icons right">edit</i></button>
+		</div>
+		<div class="col l6 m6 s12 center">
+			<button (click)="onDeleteMemoire()" class="btn red">Supprimer <i class="material-icons right">delete</i></button>
+		</div>
+		</div>
+	</div>
+	
+</div>
+

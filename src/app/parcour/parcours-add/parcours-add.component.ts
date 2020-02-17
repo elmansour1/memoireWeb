@@ -13,7 +13,7 @@ declare var $:any;
   styleUrls: ['./parcours-add.component.css']
 })
 export class ParcoursAddComponent implements OnInit {
-
+	form: any = {};
 	parcour: Parcours = new Parcours();
 
   	constructor(private router: Router, private parcoursService: ParcoursService) { }
@@ -37,12 +37,14 @@ export class ParcoursAddComponent implements OnInit {
     	this.router.navigate(['parcours']);
   	}
 
-	onSaveParcour(){
-	  	console.log(this.parcour);
-	  	this.parcoursService.add(this.parcour)
+	onSubmit(){
+	  	console.log(this.form);
+	  	this.parcoursService.add(this.form)
 	  		.subscribe(res=>{
+	  			alert("Le Parcours a été bien ajouter !");
 	  			this.router.navigateByUrl("/parcours");
 	  		},err=>{
+	  			alert("Erreur connexion au serveur");
 	  			console.log(err);
 	  		});
 	  }

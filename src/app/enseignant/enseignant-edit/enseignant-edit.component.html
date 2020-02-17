@@ -1,8 +1,8 @@
 <div class="row modal">
 	<div class="row right">
-		<div class="col l6 m6 s12 ">
+		<!-- <div class="col l6 m6 s12 ">
 			<button (click)='closeAll()' class="btn #ffeb3b blue"><i class="material-icons">close</i></button>
-		</div>
+		</div> -->
 	</div>
 	<div class="row">
 		<h5>Détails {{enseignant.nom}}</h5>
@@ -11,18 +11,21 @@
 		<div class="col l6 m6 s12">
 			<b>Nom : </b> {{enseignant.nom}}
 		</div>
-	</div>
-	<div class="row">
 		<div class="col l6 m6 s12">
 			<b>Grade : </b> {{enseignant.grade}}
 		</div>
-	</div>	
+	</div>
+	<!-- <div class="row">
+		<div class="col l6 m6 s">
+			<b>Grade : </b> {{enseignant.grade}}
+		</div>
+	</div>	 -->
 	<div class="row">
 	<div class="col l6 m6 s12 center">
-		<button (click)="onEdit()" class="btn"><i class="material-icons">edit</i>Modifier</button>
+		<button (click)="onEdit()" class="btn">Modifier <i class="material-icons right">edit</i></button>
 	</div>
 	<div class="col l6 m6 s12 center">
-		<button (click)="onDeleteEnseignant()" class="btn red"><i class="material-icons">delete</i>Supprimer</button>
+		<button (click)="onDeleteEnseignant()" class="btn red">Supprimer <i class="material-icons right">delete</i></button>
 	</div>
 	</div>
 </div>

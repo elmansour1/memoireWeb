@@ -25,20 +25,26 @@
 		</div>
 		<div class="row">
 			<div class="col s12">
-				<table>
+				<table class="responsive-table striped">
 					<thead>
 					  <tr>
 					      <th>Code</th>
 					      <th>Description</th>
 					      <th>Departement</th>
+					      <th>Détailler</th>
 					  </tr>
 					</thead>
 					<tbody>
-					  <tr *ngFor="let specialisation of specialisations" (click)="details(specialisation.id)">
+					  <tr *ngFor="let specialisation of specialisations">
 					    <!-- <td>{{specialisation.matricule}}</td> -->
 					    <td>{{specialisation.code}}</td>
 					    <td>{{specialisation.description}}</td>
 					    <td>{{specialisation.departement.code}}</td>
+					    <td>
+							<div>
+								<button class="waves-effect waves-teal btn-flat" (click)="details(specialisation.id)"><i class="material-icons large">zoom_in</i></button>
+				
+						</div>
 					  </tr>
 					</tbody>
 				</table>

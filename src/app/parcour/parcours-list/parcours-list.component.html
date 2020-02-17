@@ -25,15 +25,22 @@
 		</div>
 		<div class="row">
 			<div class="col s12">
-				<table>
+				<table class="responsive-table striped">
 					<thead>
 					  <tr>
 					      <th>Nom</th>
+					      <th>Détailler</th>
 					  </tr>
 					</thead>
 					<tbody>
-					  <tr *ngFor="let parcour of parcours" (click)="details(parcour.id)">
+					  <tr *ngFor="let parcour of parcours">
 					    <td>{{parcour.nom}}</td>
+					    <td>
+							<div>
+								<button class="waves-effect waves-teal btn-flat" (click)="details(parcour.id)"><i class="material-icons large">zoom_in</i></button>
+				
+						</div>
+						</td>
 					  </tr>
 					</tbody>
 				</table>

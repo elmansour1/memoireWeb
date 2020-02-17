@@ -29,6 +29,7 @@ export class AppComponent implements OnInit{
   ngOnInit() {
   	$(document).ready(function(){
     $('.sidenav').sidenav();
+    // $(".button-collapse").sideNav();
   	});
 
 

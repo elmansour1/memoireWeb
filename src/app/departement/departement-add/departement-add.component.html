@@ -2,28 +2,50 @@
     <div class="modal-content container">
       <h4 class="center">Ajouter Un Departement</h4>
     </div>
+    <form name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate >
     <div class="modal-body container">
 		<div class="row input-field">
 			<i class="material-icons prefix">plus_one</i>
-			<input type="text"  [(ngModel)]="departement.code" class="validate">
+			<input type="text"  
+				name="code" 
+				[(ngModel)]="form.code" 
+				#code="ngModel"
+				required 
+				class="validate"
+				>
 			<label>Code</label>
+			<div class="materialert error" *ngIf="f.submitted && code.invalid">
+				    <div class="material-icons">error_outline</div>
+				    Le code ne peux pas être vide !
+				</div>
 		</div>
 		<div class="row input-field">
 			<i class="material-icons prefix">account_circle</i>
-			<input type="text"  [(ngModel)]="departement.intitule" class="validate">
+			<input type="text" 
+				name="intitule" 
+				[(ngModel)]="form.intitule" 
+				#intitule="ngModel"
+				required 
+				class="validate"
+				>
 			<label>Intitulé</label>
+			<div class="materialert error" *ngIf="f.submitted && intitule.invalid">
+				    <div class="material-icons">error_outline</div>
+				    L'intitule ne peux pas être vide !
+				</div>
 		</div>
     </div>
     <div class="modal-footer">
     	<div class="row">
 	      <div class="col l6 m6 s12 center">
-				<button (click)='closeAll()' class="btn red">Annuler</button>
+				<button (click)='closeAll()' class="btn red">Annuler <i class="material-icons right">cancel</i></button>
 			</div>
 			<div class="col l6 m6 s12 center">
-				<button (click)="onSaveDepartement()" class="btn">Envoyer</button>
+				<button type="submit" class="btn">Envoyer<i class="material-icons right">send</i></button>
 			</div>
     	</div>
 	</div>
+</form>
   </div>
 
 

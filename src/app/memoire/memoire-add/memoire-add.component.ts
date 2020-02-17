@@ -34,6 +34,7 @@ declare var $:any;
     ngAfterViewInit(){
         
     }
+    
 
    async  ngOnInit() {
     $('.modal').modal({
@@ -57,6 +58,11 @@ declare var $:any;
       
     }
   
+closeAll() {
+    this.router.navigateByUrl("/");
+  }
+
+
     getEnseignants(){
       this.enseignantsService.getAll().then(data=>{
         this.enseignants=data;

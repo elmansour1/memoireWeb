@@ -72,9 +72,11 @@ export class SpecialisationAddComponent implements OnInit {
     
   } else {
     this.specialisationService.add(tmp).subscribe(res=>{
+      alert("L'option a été bien ajouter !");
       this.router.navigate(['/specialisations']);
       },
       err=>{
+        alert("Erreur connexion au serveur");
       console.log(err);
     
       })

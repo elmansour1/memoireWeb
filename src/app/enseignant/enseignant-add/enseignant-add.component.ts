@@ -13,7 +13,7 @@ declare var $:any;
   styleUrls: ['./enseignant-add.component.css']
 })
 export class EnseignantAddComponent implements OnInit {
-
+  form: any = {};
 	enseignant: Enseignant = new Enseignant();
 
   constructor(private router: Router, private enseignantService: EnseignantService) { }
@@ -39,11 +39,13 @@ export class EnseignantAddComponent implements OnInit {
   }
 
   onSaveEnseignant(){
-  	console.log(this.enseignant);
-  	this.enseignantService.add(this.enseignant)
+  	console.log(this.form);
+  	this.enseignantService.add(this.form)
   		.subscribe(res=>{
+        alert("L'encadreur a été bien ajouter !");
   			this.router.navigateByUrl("/enseignants");
   		},err=>{
+        alert("Erreur de connexion au serveur");
   			console.log(err);
   		});
   }

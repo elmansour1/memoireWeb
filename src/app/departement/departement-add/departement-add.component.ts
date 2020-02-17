@@ -13,7 +13,7 @@ declare var $: any;
 export class DepartementAddComponent implements OnInit {
 
 	departement: Departement = new Departement();
-
+  form: any = {};
   constructor(private router:Router, private departementService: DepartementService) { }
 
   ngOnInit() {
@@ -36,12 +36,14 @@ export class DepartementAddComponent implements OnInit {
     this.router.navigate(['departements']);
   }
 
-  onSaveDepartement(){
-  	console.log(this.departement);
-  	this.departementService.add(this.departement)
+  onSubmit(){
+  	console.log(this.form);
+  	this.departementService.add(this.form)
   		.subscribe(res=>{
+        alert("Le departement a été bien ajouter !");
   			this.router.navigateByUrl("/departements");
   		},err=>{
+        alert(" Erreur connexion au serveur ");
   			console.log(err);
   		});
   }

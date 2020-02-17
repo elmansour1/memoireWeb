@@ -25,19 +25,24 @@
 		</div>
 		<div class="row">
 			<div class="col s12">
-				<table>
+				<table class="responsive-table striped">
 					<thead>
 					  <tr>
 					      <th>Nom-Prenom</th>
 					      <th>Grade</th>
+					      <th>Détailler</th>
 					  </tr>
 					</thead>
 					<tbody>
-					  <tr *ngFor="let enseignant of enseignants" (click)="details(enseignant.id)">
+					  <tr *ngFor="let enseignant of enseignants">
 					    <!-- <td>{{enseignant.matricule}}</td> -->
 					    <td>{{enseignant.nom}}</td>
 					    <!-- <td>{{enseignant.email}}</td> -->
 					    <td>{{enseignant.grade}}</td>
+					    <div>
+								<button class="waves-effect waves-teal btn-flat" (click)="details(enseignant.id)"><i class="material-icons large">zoom_in</i></button>
+				
+						</div>
 					  </tr>
 					</tbody>
 				</table>

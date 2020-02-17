@@ -58,6 +58,7 @@ export class EnseignantUpdateComponent implements OnInit {
       .subscribe(
         data  => {
           $(".modal").modal('close');
+          alert("L'Encadreur a été bien modifier !")
               this.router.navigate(['/enseignants']);
         },
         error => {

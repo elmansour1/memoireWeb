@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpEvent, HttpHeaders , HttpRequest} from '@angular/common/http';
-import {Http, ResponseContentType} from '@angular/http';
+import { HttpResponse} from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 
@@ -33,13 +33,15 @@ export class MemoireService {
 	}
 
 	public add(data){
-		const headers = new HttpHeaders()
+		 let headers = new HttpHeaders()
 		            .set("ContentType", "application/json");
 
-		return this.http.post(this.url+"/memoires", data, headers);
+		return this.http.post(this.url+"/memoires", data);
 	}
 
 	public update(data){
+		let headers = new HttpHeaders()
+		            .set("ContentType", "application/json");
 		return this.http.put(this.url+"/memoires", data);
 	}
 
@@ -60,11 +62,20 @@ export class MemoireService {
 	}
 
 	public downloadFile(file){
-		// let formdata: FormData = new FormData();
-		// formdata.append('file',file);
-		const headers = new HttpHeaders()
-		            .set("ContentType", "application/json");
-		return this.http.get(this.url +'/memoire/downloadFile/'+file,headers); 	
+		// let tmp=file.split(" ");
+		// let t= "";
+		// let i =0;
+		// tmp.forEach(e=>{
+		// 	if((i+1)>=tmp.length){
+		// 		t=t+"%20"+e
+		// 	}
+		// 	i++;
+		// })
+		// console.log(t);
+		// return this.http.get(this.url+"/memoire/downloadFile/"+t);
+		let url = this.url+"/memoire/downloadFile/"+file;
+    	window.open(url,'_blank');
+
 	}
 
 	

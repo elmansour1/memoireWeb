@@ -7,13 +7,18 @@
 						<div class="row">
 							<div class="input-field col s12">
 								<i class="material-icons prefix">search</i>
-								<input id="icon_prefix" type="text" class="validate" [(ngModel)]="autocompletion" name="autocompletion">
+								<input id="icon_prefix" type="text" class="validate" [(ngModel)]="autocompletion" name="autocompletion" (change)="filtrer(auteurs,'matricule',$event)">
 			  					<label for="icon_prefix">Autocompleter...</label>
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
+		</div>
+		<div class="row">
+			<ul>
+				<li *ngFor="let i=index,let auteur of otherTab">{{auteur.nom}}</li>
+			</ul>
 		</div>
 		<div class="row">
 			<div class="col l4 s12">

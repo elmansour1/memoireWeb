@@ -7,30 +7,30 @@
 			<form enctype="multipart/form-data" (ngSubmit)="onSaveMemoire()" >
 					<div class="modal-body">
 						<div class="row input-field">
-							<i class="material-icons prefix tiny">border_color</i>
+							<!-- <i class="material-icons prefix tiny">border_color</i> -->Titre
 							<input type="text" name="code" [(ngModel)]="memoire.titre">
-							<label>Titre</label>
+							<label></label>
 						</div>
 						<div class="row input-field">
 							<!-- <label>Date Publication</label> -->
-							<i class="material-icons prefix tiny">date_range</i>
+							<!-- <i class="material-icons prefix tiny">date_range</i> -->Date de soutenance
 							<input type="date" name="anneesSoutenance" [(ngModel)]="memoire.anneesSoutenance">
-							<label>Date de soutenance</label>
+							<!-- <label></label> -->
 						</div>
 						<div class="row input-field">
-							<i class="material-icons prefix tiny">vpn_key</i>
+							<!-- <i class="material-icons prefix tiny">vpn_key</i> -->Mots clés
 							<input type="text" name="motsCles" [(ngModel)]="memoire.motsCles">
-							<label>Mots clés</label>
+							<!-- <label></label> -->
 						</div>
 						<div class="row input-field">
-							<i class="material-icons prefix tiny">short_text</i>
+							<!-- <i class="material-icons prefix tiny">short_text</i> -->Resumé
 							<textarea class="materialize-textarea" name="resume" [(ngModel)]="memoire.resume" data-length="500" name="resume"></textarea>
-							<label>Resumé</label>
+							<!-- <label>Resumé</label> -->
 						</div>
 						<div class="row input-field">
-							<i class="material-icons prefix tiny">text_format</i>
+							<!-- <i class="material-icons prefix tiny">text_format</i> -->Abstract
 							<textarea class="materialize-textarea" name="abstrat" [(ngModel)]="memoire.abstrat" data-length="500" name="abstrat"></textarea>
-							<label>Abstract</label>
+							<!-- <label>Abstract</label> -->
 						</div>
 						<div class="row">
 								<div class="input-field col s12">
@@ -40,13 +40,43 @@
 							<label>Sélectionnez les auteurs</label>
 						  </div>
 						</div>
-						  <div class="row">
+						 <div class="row">
+								<div class="input-field col s12">
+							<select  name="presidentJury" id="presidentJury" [(ngModel)]="presidentJury">
+								<option disabled  value="">Président du Jury</option>
+							  <option *ngFor="let i=index, let encadreur of enseignants" [value]="encadreur.id" (click)="updatePrJ(encadreur)" >{{encadreur.nom}}</option>
+							</select>
+							<label>Sélectionnez le Président de Jury</label>
+						  </div>
+						</div>
+						<div class="row">
 							<div class="input-field col s12">
-						<select multiple name="encadreurs" id="encadreurs">
-						  <option *ngFor="let i=index, let encadreur of enseignants" [value]="encadreur.id" >{{encadreur.nom}}</option>
-						</select>
-						<label>Sélectionnez les encadreurs</label>
-					  </div>
+								<select multiple name="examinateurs" id="examinateurs" [(ngModel)]="						examinateursSelected">
+									<option disabled  value="">Liste des examinateurs</option>
+							  		<option *ngFor="let i=index, let examinateur of examinateurs" [value]="				examinateur.id"
+							  			(click)="updateExaminateurs(examinateur)"  >{{examinateur.nom}}</option>
+								</select>
+								<label>Sélectionnez les examinateurs</label>
+						  	</div>
+						</div>
+						<div class="row">
+							<div class="input-field col s12">
+								<select multiple name="encadreurs" id="encadreurs" [(ngModel)]="encadreursSelected">
+									<option disabled  value="">Liste des encadreurs</option>
+						  			<option *ngFor="let i=index, let encadreur of enseignants" [value]="encadreur.id" (click)="updateEncadreurs(encadreur)" >{{encadreur.nom}}</option>
+								</select>
+								<label>Sélectionnez les encadreurs</label>
+					  		</div>
+						</div>
+						<div class="row">
+							<div class="input-field col s12">
+								<select  id="specialisation"  name="specialisation" [(ngModel)]="						specialisationSelected">
+									<option  value="" disabled >Spécialisation</option>
+								  	<option *ngFor="let i=index,let specialisation of specialisations" 
+								  		[value]="specialisation.id" (click)="updateSpecialisation(specialisation)" >{{specialisation.code}}</option>
+								</select>
+								<label for="specialisation">Sélectionnez la spécialistion</label>
+							</div>
 						</div>
 						<div class="row">
 						<div class="file-field input-field">

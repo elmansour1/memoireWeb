@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router,ActivatedRoute } from '@angular/router';
 
-import { MemoireService } from '../../service';
-import { Memoire }  from '../../model';
+import { MemoireService, AuteurService } from '../../service';
+import { Memoire, Auteur }  from '../../model';
 
 declare var $:any;
 
@@ -21,6 +21,7 @@ export class MemoireEditComponent implements OnInit {
   	 if (this.memoire == undefined) {
       this.memoire = new Memoire();
     }
+
     $('.modal').modal({
         dismissible: true, // Modal can be dismissed by clicking outside of the modal
         opacity: .7, // Opacity of modal background
@@ -40,9 +41,12 @@ export class MemoireEditComponent implements OnInit {
       $(".modal").modal('open');
       this.memoireService.get(this.id)
       .then(data => this.memoire = data);
+      // console.log(this.memoire.auteurs);
     }else{
       this.router.navigate(['/']);
     }
+
+
   }
 
   // closeAll(){

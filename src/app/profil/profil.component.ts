@@ -20,7 +20,7 @@ export class ProfilComponent implements OnInit {
 
    logout() {
     this.tokenStorageService.signOut();
-    // window.location.reload();
+    window.location.reload();
   }
 
 }

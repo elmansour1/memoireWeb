@@ -14,17 +14,23 @@ declare var $:any;
 export class AuteurListComponent implements OnInit {
 
   public url:string = "http://localhost:8080/api";
+
 	auteurs: Array<Auteur>;
   autocompletion:String;
+  liste:Auteur[];
+  chaine: any;
+  otherTab:Auteur[];
   constructor(private auteurService: AuteurService, private router: Router, private http: HttpClient) { }
 
-  public chaine: any;
+  
 
   ngOnInit() {
   	this.auteurService.getAllByObservable()
       .subscribe(data=> {
         this.auteurs = data;
-        let t = this.filtrer(this.auteurs,["matricule","nom"],["504","mo"]);
+        this.liste=data;
+        this.otherTab=data;
+        let t = this.filtrer(this.auteurs,"matricule","14");
         console.log("JE SUIS L'AUTOCOMPLETION T:");
         console.log(t);
   });
@@ -44,25 +50,33 @@ export class AuteurListComponent implements OnInit {
       
  }
 
-   filtrer(tableau:any[],cles:String[], chaine:String[]):any{
+   filtrer(tableau:any[],cles:String, chaine:String):any{
+    setTimeout(()=>{
+      console.log("OK");
+    },200);
+    let dumpTableau;
+    if(tableau==undefined){
+      dumpTableau=this.liste
+    }else{
+      dumpTableau=tableau;  
+    }
     console.log("TABLEAU");
     console.log(tableau);
-    setTimeout(()=>{
-
-    },10);
+    
     let tmp=[];
     let i = 0;
-    let dumpTableau=tableau;
-    cles.forEach(element=>{
-      let t =dumpTableau.filter(
-          objet=>objet[element.toString()].toLowerCase().indexOf(chaine[i].toLocaleLowerCase())!==-1
+    
+    let t =dumpTableau.filter(
+          objet=>objet[cles.toString()].toLowerCase().indexOf(chaine.toLocaleLowerCase())!==-1
           );
       dumpTableau=t;
-      console.log(i);
-      i++;
-      
-      });
       tmp.push(dumpTableau);
+      this.otherTab=tmp;
+      console.log("**********");
+      console.log(typeof(cles));
+      console.log("***********");
+      console.log(chaine);
+      console.log("***********");
       return tmp;
     //n=>n.nom.toLowerCase().indexOf(requete.toLowerCase())!==-1
   }

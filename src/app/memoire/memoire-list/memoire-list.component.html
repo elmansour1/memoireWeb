@@ -23,7 +23,48 @@
 					<button *ngIf="showUserBoard" [routerLink]="['add']" data-target="modal1" class="col offset-s8-s8 btn-floating btn-large waves-effect waves-light teal darken-2 btn modal-trigger" ><i class="material-icons">add</i></button>
 				</div>
 		</div>
-		<div class="row">
+
+
+
+		<div class="row" *ngFor="let i=index,let m of memoiresByTwo">
+			<div class="col s6 m6 hoverable" *ngFor="let memoire of getTwoMemoires(i)">
+				<div class="card">
+				    <div class="card-image waves-effect waves-block waves-light">
+				      <img class="activator" src="assets/images/entreeAmphi.jpeg">
+				    </div>
+				    <div class="card-content">
+				      <span class="card-title activator grey-text text-darken-4 truncate">{{memoire.titre}}<i class="material-icons right">more_vert</i></span>
+				      <p class="truncate scrolling">{{memoire.resume}}</p>
+				      <div class="card sticky-action">
+				      	<div class="card-action" (click)="details(memoire.id)"><a class="btn flat teal darken-2">Détails</a></div>
+				      </div>
+				    </div>
+				    
+				    <div class="card-reveal">
+				      <span class="card-title grey-text text-darken-4 truncate">{{memoire.titre}}<i class="material-icons right">close</i></span>
+				      <p class="200">{{memoire.abstrat}}</p>
+				    </div>
+		  		</div>
+            
+			</div>
+		  
+		</div>
+		 <!--div class="row" *ngFor="let i=index,let m of memoiresByTwo">
+		    <div class="col s6 m6" *ngFor="let memoire of getTwoMemoires(i)">
+		      <div class="card">
+		        <div class="card-image">
+		          <img src="assets/images/entreeAmphi.jpeg" class="responsive-image">
+		          <span class="card-title"><b>{{memoire.titre}}</b></span>
+		          <a class="btn-floating halfway-fab waves-effect waves-light teal darken-2" (click)="downloadOrLogIn(memoire.document)"><i class="material-icons">file_download</i></a>
+		        </div>
+		        <div class="card-content">
+		          <p class="">{{memoire.resume}}</p>
+		        </div>
+		      </div>
+    		</div>
+	
+    </div-->
+		<!--div class="row">
 			<div class="col s12">
 				<table class="responsive-table striped">
 					<thead>
@@ -31,14 +72,14 @@
 					      <th>Titre</th>
 					      <th>Date Publication</th>
 					      <th>Détailler</th>
-					      <!-- <th>Telecharger</th> -->
+					      <<th>Telecharger</th> >
 					  </tr>
 					</thead>
 					<tbody>
 					  <tr *ngFor="let memoire of memoires">
-					    <!-- <td>{{memoire.matricule}}</td> -->
+					    <<td>{{memoire.matricule}}</td> >
 					    <td>{{memoire.titre}}</td>
-					    <!-- <td>{{memoire.email}}</td> -->
+					    <! <td>{{memoire.email}}</td> >
 					    <td>{{memoire.datePublication}}</td>
 					    <td>
 							<div>
@@ -46,11 +87,11 @@
 				
 						</div>
 						</td>
-					    <!-- <td>{{splitter(memoire)}}<button class="col offset-s8-s8 btn-floating btn-large waves-effect waves-light teal darken-2 btn modal-trigger" (click)="getPDF(memoire)"> <i class="material-icons">add</i> </button></td> -->
+					    <! <td>{{splitter(memoire)}}<button class="col offset-s8-s8 btn-floating btn-large waves-effect waves-light teal darken-2 btn modal-trigger" (click)="getPDF(memoire)"> <i class="material-icons">add</i> </button></td> >
 					  </tr>
 					</tbody>
 				</table>
 			</div>
-		</div>
+		</div-->
 	</div>
 </div>

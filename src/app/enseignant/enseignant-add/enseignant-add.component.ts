@@ -38,7 +38,7 @@ export class EnseignantAddComponent implements OnInit {
     this.router.navigate(['enseignants']);
   }
 
-  onSaveEnseignant(){
+  onSubmit(){
   	console.log(this.form);
   	this.enseignantService.add(this.form)
   		.subscribe(res=>{

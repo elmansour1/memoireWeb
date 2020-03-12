@@ -12,7 +12,7 @@
 			<b>Login : </b> {{user.username}}
 		</div>
 		<div class="col l6 m6 s12">
-			<b>Role : </b> {{user.roles.name}}
+			<b>Role : </b> <label *ngFor="let r of user.roles">{{r.name}}&nbsp;&nbsp;</label>
 		</div>
 	</div>
 	<!-- <div class="row">

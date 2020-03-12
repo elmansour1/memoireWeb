@@ -1,6 +1,6 @@
-import { MemoireService, AuteurService, EnseignantService } from 'src/app/service';
+import { MemoireService, AuteurService, EnseignantService, SpecialisationService } from 'src/app/service';
 import { HttpEventType , HttpResponse} from '@angular/common/http';
-import { Enseignant, Auteur, Memoire } from 'src/app/model';
+import { Enseignant, Auteur, Memoire, Specialisation } from 'src/app/model';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
@@ -21,13 +21,23 @@ declare var $:any;
     document:File;
     enseignants:Enseignant[];
     auteurs:Auteur[];
-  auteursSelected: Auteur[]=[];
-  enseignantsSelected: Enseignant[]=[];
+    auteursSelected=[];
+    enseignantsSelected=[];
+    encadreursSelected=[];
+    examinateursSelected=[];
+    encadreurs:Enseignant[];
+    presidentJury;
+    examinateurs:Enseignant[];
+    specialisations:Specialisation[];
+    specialisationSelected;
+    inviter:String;
+
 
     constructor(private service: MemoireService,
                 private router:Router, 
                 private auteurService:AuteurService,
-                private enseignantsService:EnseignantService
+                private enseignantsService:EnseignantService,
+                private specialisationService:SpecialisationService
                 ) {
                  }
     
@@ -51,8 +61,9 @@ declare var $:any;
  
      // await this.getAuteurs();
     
-    this.getAuteurs();
+      this.getAuteurs();
      this.getEnseignants();
+     this.getSpecialisations();
       console.log(this.auteurs);
       
       
@@ -66,6 +77,7 @@ closeAll() {
     getEnseignants(){
       this.enseignantsService.getAll().then(data=>{
         this.enseignants=data;
+        this.examinateurs=data;
         setTimeout(function(){
           $('select').formSelect();
         },0);
@@ -82,32 +94,116 @@ closeAll() {
         
       })
     }
+
+    getSpecialisations(){
+      this.specialisationService.getAll().then(data=>{
+        this.specialisations=data;
+        setTimeout(function(){
+          $('select').formSelect();
+        },0);
+        
+    });
+  }
   
    
   
-    updateAuteurs(args){
+  updateAuteurs(args){
+    this.auteursSelected.push(args);
+    console.log(this.auteursSelected);
+  }
 
-    }
+  updateSpecialisation(spec){
+    let tSp=$('#specialisation').formSelect('getSelectedValues');
+      tSp.forEach(element => {
+        let tm:any=this.specialisations.filter(a=>a.id==element)
+        this.specialisationSelected=tm[0];
+        console.log(this.specialisationSelected);
+      });
+    // console.log(spec);
+    this.specialisationSelected=spec;
+    console.log(this.specialisationSelected);
+  }
+
+  updateExaminateurs(ex){
+    this.examinateursSelected.push(ex);
+    console.log(this.examinateursSelected);
+  }
   
+  updatePrJ(prj){
+    this.presidentJury=prj;
+  }
+
+  updateEncadreurs(enc){
+    this.encadreursSelected.push(enc);
+    console.log(this.encadreursSelected);
+  }
+
   onSelectedFile(event) {
     this.selectedFiles=event.target.files;
   }
+
+
   
     onSaveMemoire(){
       
-      let t=$('select').formSelect('getSelectedValues');
+      let t=$('#auteurs').formSelect('getSelectedValues');
+      let auteurs;
+      //this.auteursSelected=[];
       t.forEach(element => {
         let tm:any=this.auteurs.filter(a=>a.id==element)
         this.auteursSelected.push(tm[0]);
       });
-      let tEn=$('select').formSelect('getSelectedValues');
-      t.forEach(element => {
+
+      console.log("SELECTREDVALUES PRJ");
+      console.log($('#presidentJury').formSelect('getSelectedValues'))
+      //let tPr=$('#presidentJury').formSelect('getSelectedValues');
+      let prJ;
+      let tmo;
+      
+        tmo=this.enseignants.filter(a=>a.id==this.presidentJury)
+        prJ=tmo[0];
+    
+      console.log("TMLOOOOOOOOOOOO");
+      console.log(tmo);
+      
+      //let tEn=$('#encadreurs').formSelect('getSelectedValues');
+      let encadreurs;
+      this.encadreursSelected.forEach(element => {
         let tm:any=this.enseignants.filter(a=>a.id==element)
-        this.enseignantsSelected.push(tm[0]);
+        encadreurs=tm;
       });
+
+      //let tEx=$('#examinateurs').formSelect('getSelectedValues');
+      let examinateurs;
+      this.examinateursSelected.forEach(element => {
+        let tm:any=this.enseignants.filter(a=>a.id==element)
+        examinateurs=tm;
+      });
+
+      //let tSp=$('#specialisation').formSelect('getSelectedValues');
+      let specialisation;
+        let tm:any=this.specialisations.filter(a=>a.id==this.specialisationSelected)
+        specialisation=tm[0];
+        console.log(this.specialisationSelected);
+
       console.log("AUTEURS SELECTED");
       
       console.log(this.auteursSelected);
+      console.log("EXAMINATEURS SELECTED");
+      
+      console.log(this.examinateursSelected);
+      console.log("ENCADREURS SELECTED");
+      
+      console.log(this.encadreursSelected);
+
+      console.log("PRESIDENT JURY");
+      
+      console.log(this.presidentJury);
+
+      console.log("SPECIALISATION SELECTED");
+      
+      console.log(this.specialisationSelected);
+
       console.log("DOCUMENT");
       console.log("CHEMIN");
       let chemin=$('#fileUpload').val();
@@ -117,9 +213,19 @@ closeAll() {
       
       console.log(this.document);
       this.document = this.selectedFiles.item(0);
+      console.log("SELECTEDFILE NAME")
       console.log(this.selectedFiles.item(0).name);
       
-      let tmp={
+      let nbInviter=0;
+
+      let encad = [];
+      encad.push(prJ);
+      examinateurs.forEach(enc=>encad.push(enc));
+      encadreurs.forEach(enc=>encad.push(enc));
+      // encad.push(this.examinateursSelected);
+      // encad.push(this.encadreursSelected);
+
+      let tmp:Memoire={
          titre:this.memoire.titre,
          datePublication: new Date(),
          anneesSoutenance:  new Date(this.memoire.anneesSoutenance),
@@ -127,37 +233,42 @@ closeAll() {
          resume:this.memoire.resume,
          abstrat: this.memoire.abstrat,
          document: this.selectedFiles.item(0).name,
-         encadreurs: this.enseignantsSelected,
-         auteurs: this.auteursSelected
-      }
+         auteurs: this.auteursSelected,
+        // inviter:this.memoire.inviter,
+        encadreurs:encad,
 
-      // let fd = new FormData();
-      // fd.append(titre,this.memoire.titre);
-      // fd.append(datePublication, new Date());
-      // fd.append(anneesSoutenance,new Date(this.memoire.anneesSoutenance));
-      // fd.append(motsCles,this.memoire.motsCles);
-      // fd.append(resume,this.memoire.resume);
-      // fd.append(abstrat,this.memoire.abstrat);
-      // fd.append(document,this.selectedFiles.name);
-      // fd.append(encadreurs,this.enseignantsSelected);
-      // fd.append(auteurs,this.auteurs);
-
+         specialisation:specialisation,
+         nbExaminateur:this.examinateursSelected.length,
+         nbEncadreur:this.encadreursSelected.length,
+         nbInviter: 0
+      };
 
       console.log("-------------------------------------------")
-      console.log(this.document)
-      console.log("-------------------------------------------")
-    this.service.add(tmp).subscribe(res=>{
+      console.log(this.document);
+      console.log("-------------------------------------------");
+      console.log("TMPPPPPPPPPPPPPPPPP")
+      console.log("-------------------------------------------");
+      console.log(tmp)    
+      console.log("-------------------------------------------");
+      console.log(this.specialisationSelected);
+      console.log("-------------------------------------------");
+
+
+this.service.add(tmp).subscribe(res=>{
       console.log(res);
     }, err=> console.log(err)
     );
     this.service.uploadFile(this.document).subscribe(event=>{
+      //alert("Le Memoire a été bien ajouter !")
         this.router.navigate(["/"]);
-      },err=>
-        console.log(err)
-      );
-    }
+      },err=>{
+      alert("Erreur connexion serveur!")
+
+        console.log(err);
+      }
+    );
   
-    annuler(){
+    // annuler(){
       
     }
   

@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Router,ActivatedRoute } from '@angular/router';
+import { HttpEventType , HttpResponse} from '@angular/common/http';
 
-import { MemoireService, AuteurService , EnseignantService} from '../../service';
-import { Memoire ,Auteur, Enseignant}  from '../../model';
+import { MemoireService, AuteurService , EnseignantService, SpecialisationService} from '../../service';
+import { Memoire ,Auteur, Enseignant, Specialisation}  from '../../model';
+import { Observable } from 'rxjs';
 
 declare var $:any;
 
@@ -21,16 +23,29 @@ export class MemoireUpdateComponent implements OnInit {
     document:File;
     enseignants:Enseignant[];
     auteurs:Auteur[];
- 	 auteursSelected: Auteur[]=[];
-  	enseignantsSelected: Enseignant[]=[];
-	id: number;
-  constructor(private router: Router, 
-  				private memoireService: MemoireService, 
-  				private route: ActivatedRoute,
-  				private auteurService:AuteurService,
-                private enseignantsService:EnseignantService) { }
+    auteursSelected=[];
+    enseignantsSelected=[];
+    encadreursSelected=[];
+    examinateursSelected=[];
+    encadreurs:Enseignant[];
+    presidentJury;
+    examinateurs:Enseignant[];
+    specialisations:Specialisation[];
+    specialisationSelected;
+    inviter:String;
+	  id: number;
+  constructor(  private router: Router, 
+        				private memoireService: MemoireService, 
+        				private route: ActivatedRoute,
+  				      private auteurService:AuteurService,
+                private enseignantsService:EnseignantService,
+                private specialisationService: SpecialisationService) { }
 
-  ngOnInit() {
+  ngAfterViewInit(){
+        
+    }
+
+  async ngOnInit() {
   	this.memoire = new Memoire();
   	$('.modal').modal({
         dismissible: false, // Modal can be dismissed by clicking outside of the modal
@@ -58,6 +73,7 @@ export class MemoireUpdateComponent implements OnInit {
 
     this.getAuteurs();
      this.getEnseignants();
+     this.getSpecialisations();
       console.log(this.auteurs);
     
   }
@@ -65,6 +81,7 @@ export class MemoireUpdateComponent implements OnInit {
   getEnseignants(){
       this.enseignantsService.getAll().then(data=>{
         this.enseignants=data;
+        this.examinateurs=data;
         setTimeout(function(){
           $('select').formSelect();
         },0);
@@ -82,6 +99,48 @@ export class MemoireUpdateComponent implements OnInit {
       })
     }
   
+  getSpecialisations(){
+      this.specialisationService.getAll().then(data=>{
+        this.specialisations=data;
+        setTimeout(function(){
+          $('select').formSelect();
+        },0);
+        
+    });
+  }
+
+
+updateAuteurs(args){
+    this.auteursSelected.push(args);
+    console.log(this.auteursSelected);
+  }
+
+  updateSpecialisation(spec){
+    let tSp=$('#specialisation').formSelect('getSelectedValues');
+      tSp.forEach(element => {
+        let tm:any=this.specialisations.filter(a=>a.id==element)
+        this.specialisationSelected=tm[0];
+        console.log(this.specialisationSelected);
+      });
+    // console.log(spec);
+    this.specialisationSelected=spec;
+    console.log(this.specialisationSelected);
+  }
+
+  updateExaminateurs(ex){
+    this.examinateursSelected.push(ex);
+    console.log(this.examinateursSelected);
+  }
+  
+  updatePrJ(prj){
+    this.presidentJury=prj;
+  }
+
+  updateEncadreurs(enc){
+    this.encadreursSelected.push(enc);
+    console.log(this.encadreursSelected);
+  }
+
 
   closeAll(){
     
@@ -95,42 +154,117 @@ export class MemoireUpdateComponent implements OnInit {
   
     onSaveMemoire(){
       
-      let t=$('select').formSelect('getSelectedValues');
+      let t=$('#auteurs').formSelect('getSelectedValues');
+      let auteurs;
+      //this.auteursSelected=[];
       t.forEach(element => {
         let tm:any=this.auteurs.filter(a=>a.id==element)
         this.auteursSelected.push(tm[0]);
       });
-      let tEn=$('select').formSelect('getSelectedValues');
-      t.forEach(element => {
+
+      console.log("SELECTREDVALUES PRJ");
+      console.log($('#presidentJury').formSelect('getSelectedValues'))
+      //let tPr=$('#presidentJury').formSelect('getSelectedValues');
+      let prJ;
+      let tmo;
+      
+        tmo=this.enseignants.filter(a=>a.id==this.presidentJury)
+        prJ=tmo[0];
+    
+      console.log("TMLOOOOOOOOOOOO");
+      console.log(tmo);
+      
+      //let tEn=$('#encadreurs').formSelect('getSelectedValues');
+      let encadreurs;
+      this.encadreursSelected.forEach(element => {
         let tm:any=this.enseignants.filter(a=>a.id==element)
-        this.enseignantsSelected.push(tm[0]);
+        encadreurs=tm;
       });
-      // console.log("AUTEURS SELECTED");
+
+      //let tEx=$('#examinateurs').formSelect('getSelectedValues');
+      let examinateurs;
+      this.examinateursSelected.forEach(element => {
+        let tm:any=this.enseignants.filter(a=>a.id==element)
+        examinateurs=tm;
+      });
+
+      //let tSp=$('#specialisation').formSelect('getSelectedValues');
+      let specialisation;
+        let tm:any=this.specialisations.filter(a=>a.id==this.specialisationSelected)
+        specialisation=tm[0];
+        console.log(this.specialisationSelected);
+
+      console.log("AUTEURS SELECTED");
       
-      // console.log(this.auteursSelected);
-      // console.log("DOCUMENT");
-      // console.log("CHEMIN");
-      // let chemin=$('#fileUpload').val();
-      // //let nom)chemin.slice('')
+      console.log(this.auteursSelected);
+      console.log("EXAMINATEURS SELECTED");
       
-      // console.log(chemin);
+      console.log(this.examinateursSelected);
+      console.log("ENCADREURS SELECTED");
       
-      // console.log(this.document);
-      // this.document = this.selectedFiles.item(0);
-      // console.log(this.selectedFiles.item(0).name);
+      console.log(this.encadreursSelected);
+
+      console.log("PRESIDENT JURY");
       
+      console.log(this.presidentJury);
+
+      console.log("SPECIALISATION SELECTED");
+      
+      console.log(this.specialisationSelected);
+
+      console.log("DOCUMENT");
+      console.log("CHEMIN");
+      let chemin=$('#fileUpload').val();
+      //let nom)chemin.slice('')
+      
+      console.log(chemin);
+      
+      console.log(this.document);
+      this.document = this.selectedFiles.item(0);
+      console.log("SELECTEDFILE NAME")
+      console.log(this.selectedFiles.item(0).name);
+      
+      let nbInviter=0;
+
+      let encad = [];
+      encad.push(prJ);
+      examinateurs.forEach(enc=>encad.push(enc));
+      encadreurs.forEach(enc=>encad.push(enc));
+      // encad.push(this.examinateursSelected);
+      // encad.push(this.encadreursSelected);
+      
+      // this.memoire={
+      // 	id: this.memoire.id,
+      //    titre:this.memoire.titre,
+      //    datePublication: new Date(),
+      //    anneesSoutenance:  new Date(this.memoire.anneesSoutenance),
+      //    motsCles:this.memoire.motsCles,
+      //    resume:this.memoire.resume,
+      //    abstrat: this.memoire.abstrat,
+      //    document: this.selectedFiles.item(0).name,
+      //    encadreurs: this.enseignantsSelected,
+      //    auteurs: this.auteursSelected
+      // }
+
+
       this.memoire={
-      	id: this.memoire.id,
-         titre:this.memoire.titre,
-         datePublication: new Date(),
-         anneesSoutenance:  new Date(this.memoire.anneesSoutenance),
-         motsCles:this.memoire.motsCles,
-         resume:this.memoire.resume,
-         abstrat: this.memoire.abstrat,
-         document: this.selectedFiles.item(0).name,
-         encadreurs: this.enseignantsSelected,
-         auteurs: this.auteursSelected
-      }
+          id: this.memoire.id,
+          titre:this.memoire.titre,
+          datePublication: new Date(),
+          anneesSoutenance:  new Date(this.memoire.anneesSoutenance),
+          motsCles:this.memoire.motsCles,
+          resume:this.memoire.resume,
+          abstrat: this.memoire.abstrat,
+          document: this.selectedFiles.item(0).name,
+          auteurs: this.auteursSelected,
+        // inviter:this.memoire.inviter,
+         encadreurs:encad,
+
+         specialisation:specialisation,
+         nbExaminateur:this.examinateursSelected.length,
+         nbEncadreur:this.encadreursSelected.length,
+         nbInviter: 0
+      };
 
       // let fd = new FormData();
       // fd.append(titre,this.memoire.titre);
@@ -149,6 +283,7 @@ export class MemoireUpdateComponent implements OnInit {
       console.log("-------------------------------------------")
     this.memoireService.update(this.memoire).subscribe(res=>{
       console.log(res);
+      alert("cool")
     }, err=> console.log(err)
     );
     this.memoireService.uploadFile(this.document).subscribe(event=>{

@@ -22,6 +22,8 @@ export class AuteurService {
       	});
 	}
 
+	// public getAllAuteurs():
+
 	public getAllByObservable(): Observable<Auteur[]>{
 		return this.http.get(this.url+"/auteurs")
 			.pipe(

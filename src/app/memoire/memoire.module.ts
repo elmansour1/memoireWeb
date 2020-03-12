@@ -11,6 +11,10 @@ import { MemoireListComponent } from './memoire-list/memoire-list.component';
 import { MemoireRoutingModule} from './memoire-routing.module';
 
 import { MemoireService } from '../service';
+import { AfficherPdfComponent } from './afficher-pdf/afficher-pdf.component';
+
+import { PdfViewerModule } from 'ng2-pdf-viewer';
+
 
 @NgModule({
   declarations: [
@@ -18,12 +22,13 @@ import { MemoireService } from '../service';
   		MemoireUpdateComponent, 
   		MemoireDeleteComponent, 
   		MemoireEditComponent, 
-      MemoireListComponent
+      MemoireListComponent, AfficherPdfComponent
   		],
   imports: [
     CommonModule,
     FormsModule,
-    MemoireRoutingModule
+    MemoireRoutingModule,
+    PdfViewerModule
   ],
   providers:[MemoireService]
 })

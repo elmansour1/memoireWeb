@@ -13,12 +13,12 @@
 				<b>Date de soutenance : </b> {{memoire.anneesSoutenance}}
 			</div>
 			<div class="col l6 m6 s12">
-				<b>Resume : </b> {{memoire.resume}}
+				<b>Auteurs : </b> <label *ngFor="let a of memoire.auteurs">&nbsp;{{a.nom}}  &  &nbsp;</label>
 			</div>
 		</div>
 		<div class="row">
 			<div class="col l6 m6 s12">
-				<b>Abstract : </b> {{memoire.abstrat}}
+				<b>Jury : </b> <label *ngFor="let e of memoire.encadreurs">&nbsp;{{e.nom}}&nbsp;</label>
 			</div>
 			<div class="col l6 m6 s12">
 				<b>La date de publication : </b> {{memoire.datePublication}}

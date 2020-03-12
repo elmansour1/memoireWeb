@@ -32,21 +32,61 @@
 							<textarea class="materialize-textarea" name="abstrat" [(ngModel)]="memoire.abstrat" data-length="500" name="abstrat"></textarea>
 							<label>Abstract</label>
 						</div>
+						
 						<div class="row">
 								<div class="input-field col s12">
-							<select multiple name="auteurs" id="auteurs">
-							  <option *ngFor="let i=index, let auteur of auteurs" [value]="auteur.id" (click)="updateAuteurs(auteur)" >{{auteur.nom}}</option>
+							<select multiple name="auteurs" id="auteurs" >
+								<option disabled  value="">Liste des auteurs</option>
+							  <option *ngFor="let i=index, let auteur of auteurs" [value]="auteur.id" (click)="updateAuteurs(auteur)">{{auteur.nom}}</option>
 							</select>
 							<label>Sélectionnez les auteurs</label>
 						  </div>
 						</div>
+						<div class="row">
+								<div class="input-field col s12">
+							<select  name="presidentJury" id="presidentJury" [(ngModel)]="presidentJury">
+								<option disabled  value="">Président du Jury</option>
+							  <option *ngFor="let i=index, let encadreur of enseignants" [value]="encadreur.id" (click)="updatePrJ(encadreur)" >{{encadreur.nom}}</option>
+							</select>
+							<label>Sélectionnez le Président de Jury</label>
+						  </div>
+						</div>
+						<div class="row">
+								<div class="input-field col s12">
+							<select multiple name="examinateurs" id="examinateurs" [(ngModel)]="examinateursSelected">
+								<option disabled  value="">Liste des examinateurs</option>
+							  <option *ngFor="let i=index, let examinateur of examinateurs" [value]="examinateur.id"
+							  (click)="updateExaminateurs(examinateur)"  >{{examinateur.nom}}</option>
+							</select>
+							<label>Sélectionnez les examinateurs</label>
+						  </div>
+						</div>
 						  <div class="row">
 							<div class="input-field col s12">
-						<select multiple name="encadreurs" id="encadreurs">
-						  <option *ngFor="let i=index, let encadreur of enseignants" [value]="encadreur.id" >{{encadreur.nom}}</option>
+						<select multiple name="encadreurs" id="encadreurs" [(ngModel)]="encadreursSelected">
+							<option disabled  value="">Liste des encadreurs</option>
+						  <option *ngFor="let i=index, let encadreur of enseignants" [value]="encadreur.id" (click)="updateEncadreurs(encadreur)" >{{encadreur.nom}}</option>
 						</select>
 						<label>Sélectionnez les encadreurs</label>
 					  </div>
+						</div>
+						<div class="row">
+							<div class="input-field col s12">
+							<label for="specialisation">Sélectionnez la spécialistion</label>
+							<select  id="specialisation"  name="specialisation" [(ngModel)]="specialisationSelected">
+								<option  value="" disabled selected>Spécialisation</option>
+							  	<option *ngFor="let i=index,let specialisation of specialisations" 
+							  [value]="specialisation.id" (click)="updateSpecialisation(specialisation)" >{{specialisation.code}}</option>
+							</select>
+						  </div>
+						</div>
+						<div class="row">
+							{{presidentJury}}
+						</div>
+						<div class="row input-field">
+							<i class="material-icons prefix tiny">border_color</i>
+							<input type="text" name="code" [(ngModel)]="inviter">
+							<label>Invité</label>
 						</div>
 						<div class="row">
 						<div class="file-field input-field">
@@ -62,7 +102,7 @@
 						<!-- <div class="row">
 							<label for="encadreurs">Encadreurs</label>
 							<select id="encadreurs" class="browser-default" name="encadreurs">
-								<option value="" disabled selected>Choisir les Encadreurs</option>
+								<option value="" disabled >Choisir les Encadreurs</option>
 								<option *ngFor="let i=index,let encadreur of encadreurs" [value]="encadreur.id" (click)="updateencadreur(encadreur)">
 									{{encadreur.code}}
 								</option>
@@ -70,7 +110,7 @@
 						</div> -->
 						<!-- <div class="row input-field">
 							<select multiple>
-							  <option value="" disabled selected>Choisir les Encadreurs</option>
+							  <option value="" disabled >Choisir les Encadreurs</option>
 							   <option *ngFor="let i=index,let encadreur of encadreurs" [value]="encadreur.id" (click)="updateencadreur(encadreur)">
 									{{encadreur.code}}
 								</option>
@@ -80,7 +120,7 @@
 						<!-- <div class="row">
 							<label for="auteur">Auteurs</label>
 							<select id="auteur" class="browser-default" name="auteur"  >
-								<option value="" disabled selected>Choisir un Auteur ou les Auteurs</option>
+								<option value="" disabled >Choisir un Auteur ou les Auteurs</option>
 								<option *ngFor="let i=index,let p of memoires" [value]="auteur.id" (click)="updateAuteurs(p)">
 									{{p.id}}
 								</option>

@@ -56,8 +56,19 @@ export class UserEditComponent implements OnInit {
   }
 
   public onDeleteUser(){
-  	$(".modal").modal('close');
-    this.router.navigate(['/users']);
+  	console.log(this.id);
+    
+    let res=confirm("Êtes-vous certain de vouloir supprimer cet élément?");
+      if (res) {
+        this.userService.del(this.id)
+          .subscribe(res=>{
+            this.router.navigate(['/users']);
+        },
+        err=>{
+          console.log(err);
+          
+        })
+      }
   }
 
 

@@ -54,8 +54,19 @@ export class ParcoursEditComponent implements OnInit {
   }
 
   public onDeleteParcour(){
-  	$(".modal").modal('close');
-    this.router.navigate(['/parcours']);
+  	console.log(this.id);
+    
+    let res=confirm("Êtes-vous certain de vouloir supprimer cet élément?");
+      if (res) {
+        this.parcoursService.del(this.id)
+          .subscribe(res=>{
+            this.router.navigate(['/parcours']);
+        },
+        err=>{
+          console.log(err);
+          
+        })
+      }
   }
 
 }

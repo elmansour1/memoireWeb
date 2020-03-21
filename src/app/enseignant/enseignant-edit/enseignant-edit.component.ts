@@ -54,8 +54,19 @@ export class EnseignantEditComponent implements OnInit {
   }
 
   public onDeleteEnseignant(){
-  	$(".modal").modal('close');
-    this.router.navigate(['/enseignants']);
+  	console.log(this.id);
+    
+    let res=confirm("Êtes-vous certain de vouloir supprimer cet élément?");
+      if (res) {
+        this.enseignantService.del(this.id)
+          .subscribe(res=>{
+            this.router.navigate(['/enseignants']);
+        },
+        err=>{
+          console.log(err);
+          
+        })
+      }
   }
 
 }

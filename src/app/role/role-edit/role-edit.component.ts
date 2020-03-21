@@ -58,8 +58,19 @@ export class RoleEditComponent implements OnInit {
   }
 
   public onDeleteRole(){
-  	$(".modal").modal('close');
-    this.router.navigate(['/roles']);
+  	console.log(this.id);
+    
+    let res=confirm("Êtes-vous certain de vouloir supprimer cet élément?");
+      if (res) {
+        this.roleService.del(this.id)
+          .subscribe(res=>{
+            this.router.navigate(['/roles']);
+        },
+        err=>{
+          console.log(err);
+          
+        })
+      }
   }
 
 

@@ -54,8 +54,19 @@ export class SpecialisationEditComponent implements OnInit {
   }
 
   public onDeleteSpecialisation(){
-  	$(".modal").modal('close');
-    this.router.navigate(['/specialisations']);
+  	console.log(this.id);
+    
+    let res=confirm("Êtes-vous certain de vouloir supprimer cet élément?");
+      if (res) {
+        this.specialisationService.del(this.id)
+          .subscribe(res=>{
+            this.router.navigate(['/specialisations']);
+        },
+        err=>{
+          console.log(err);
+          
+        })
+      }
   }
 
 }

@@ -58,8 +58,19 @@ export class AuteurEditComponent implements OnInit {
   }
 
   public onDeleteAuteur(){
-  	$(".modal").modal('close');
-    this.router.navigate(['/auteurs']);
+    console.log(this.id);
+    
+    let res=confirm("Êtes-vous certain de vouloir supprimer cet élément?");
+      if (res) {
+        this.auteurService.del(this.id)
+          .subscribe(res=>{
+            this.router.navigate(['/auteurs']);
+        },
+        err=>{
+          console.log(err);
+          
+        })
+      }
   }
 
 }

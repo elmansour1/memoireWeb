@@ -49,11 +49,11 @@ export class MemoireEditComponent implements OnInit {
 
   }
 
-  // closeAll(){
+  closeAll(){
     
-  //   $(".modal").modal('close');
-  //   this.router.navigate(['/']);
-  // }
+    $(".modal").modal('close');
+    this.router.navigate(['']);
+  }
 
   public onEdit(){
     // $(".modal").modal('close');
@@ -61,8 +61,20 @@ export class MemoireEditComponent implements OnInit {
   }
 
   public onDeleteMemoire(){
-  	$(".modal").modal('close');
-    this.router.navigate(['/']);
+    console.log(this.id);
+  	
+    let res=confirm("Êtes-vous certain de vouloir supprimer cet élément?");
+  if (res) {
+    this.memoireService.del(this.id)
+      .subscribe(res=>{
+        this.router.navigate(['']);
+    },
+    err=>{
+      console.log(err);
+      
+    })
+  }
   }
 
 }
+

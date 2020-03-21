@@ -55,7 +55,19 @@ export class DepartementEditComponent implements OnInit {
 
   public onDeleteDepartement(){
   	$(".modal").modal('close');
-    this.router.navigate(['/departements']);
+   console.log(this.id);
+    
+    let res=confirm("Êtes-vous certain de vouloir supprimer cet élément?");
+      if (res) {
+        this.departementService.del(this.id)
+          .subscribe(res=>{
+            this.router.navigate(['/departements']);
+        },
+        err=>{
+          console.log(err);
+          
+        })
+      }
   }
 
 }
